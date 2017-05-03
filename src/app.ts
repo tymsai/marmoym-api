@@ -1,8 +1,10 @@
 import * as http from 'http';
 import * as express from 'express';
-const config = require('./config/server.config.dev.json')
 
-console.log(1, config.port)
+const config = require('./config/server.config.dev.json');
+// import * as config from './config/server.config.dev.json';
+// import * as models from './models';
+const models = require('./models');
 
 // import cors from 'cors';
 // import morgan from 'morgan';
@@ -14,6 +16,7 @@ console.log(1, config.port)
 
 let app = express();
 app.server = http.createServer(app);
+
 app.server.listen(process.env.PORT || config.port);
 console.log(`Started on port ${app.server.address().port}`);
 
