@@ -1,17 +1,45 @@
 import * as fs from 'fs';
 import * as path from 'path';
-
 import * as Sequelize from 'sequelize';
-const config = require('../config/db.config.dev.json');
+import config from '../config';
 
-import * as User from './user';
-console.log("hello")
+const sequelize = new Sequelize(
+  config.db.database,
+  config.db.username,
+  config.db.password,
+  {
+    host: config.db.host,
+    port: config.db.port
+  },
+  config.db.dialect
+);
 
-type Model = Sequelize.Model;
+// import * as User from './user';
 
-interface DbConnection {
-  User: Model;
-}
-var db = {};
+// type Model = Sequelize.Model;
+//
+// interface DbConnection {
+//   User: Model;
+// }
+// var db = {};
 
-var sequelize = new Sequelize(config);
+// var sequelize = new Sequelize(config);
+
+console.log(2);
+var User = sequelize.define('user', {
+  username: Sequelize.STRING,
+  birthday: Sequelize.DATE
+});
+
+sequelize.sync().then(function() {
+  return User.create({
+    username: 'janedoe',
+    birthday: new Date(1980, 6, 20)
+  });
+}).then(function(jane) {
+  console.log(jane.get({
+    plain: true
+  }));
+});
+
+export default sequelize;
