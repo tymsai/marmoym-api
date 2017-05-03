@@ -14,9 +14,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^7.0.14"
+    "@types/node": "^7.0.14",
+    "@types/sequelize": "^4.0.51"
   },
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
   }
 }
