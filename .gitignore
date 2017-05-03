@@ -157,4 +157,5 @@ yarn.lock
 .idea/
 _backup/
 /lib/
+/src/config/
 

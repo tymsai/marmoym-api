@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf ./lib/*",
     "copy-config": "mkdir ./lib/config && cp ./src/config/* ./lib/config/",
-    "dev": "npm run clean && npm run copy-config && npm run watch",
+    "dev": "npm run clean && npm run watch",
     "watch": "tsc -w -p ./internals/typescript/tsconfig.dev.json",
     "build": "",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^7.0.14"
+    "@types/node": "^7.0.14",
+    "@types/sequelize": "^4.0.51"
   },
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
   }
 }
+

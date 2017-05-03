@@ -1,8 +1,11 @@
 import * as http from 'http';
 import * as express from 'express';
-const config = require('./config/server.config.dev.json')
 
-console.log(1, config.port)
+import config from './config'
+// import * as config from './config/server.config.dev.json';
+// import * as models from './models';
+import models from './models';
+console.log(33, models)
 
 // import cors from 'cors';
 // import morgan from 'morgan';
@@ -12,10 +15,11 @@ console.log(1, config.port)
 // import api from './api';
 // import config from './config.json';
 
-let app = express();
+const app = express();
 app.server = http.createServer(app);
-app.server.listen(process.env.PORT || config.port);
-console.log(`Started on port ${app.server.address().port}`);
+
+app.server.listen(process.env.PORT || config.server.port);
+console.log(`Server started on port ${app.server.address().port}`);
 
 // logger
 // app.use(morgan('dev'));
@@ -28,6 +32,9 @@ console.log(`Started on port ${app.server.address().port}`);
 // app.use(bodyParser.json({
 //   limit : config.bodyLimit
 // }));
+
+// initialize db
+
 
 // // connect to db
 // initializeDb( db => {
