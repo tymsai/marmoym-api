@@ -5,7 +5,7 @@ import config from './config'
 // import * as config from './config/server.config.dev.json';
 // import * as models from './models';
 import models from './models';
-console.log(33, models)
+console.log(33, models);
 
 // import cors from 'cors';
 // import morgan from 'morgan';
@@ -17,9 +17,11 @@ console.log(33, models)
 
 const app = express();
 app.server = http.createServer(app);
+models.sequelize.sync().then(function() {
+    app.server.listen(process.env.PORT || config.server.port);
+    console.log(`Server started on port ${app.server.address().port}`);
+});
 
-app.server.listen(process.env.PORT || config.server.port);
-console.log(`Server started on port ${app.server.address().port}`);
 
 // logger
 // app.use(morgan('dev'));

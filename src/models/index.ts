@@ -9,37 +9,32 @@ const sequelize = new Sequelize(
   config.db.password,
   {
     host: config.db.host,
-    port: config.db.port
-  },
-  config.db.dialect
+    port: config.db.port,
+    dialect: config.db.dialect
+  }
 );
 
-// import * as User from './user';
+var db = {};
 
-// type Model = Sequelize.Model;
-//
-// interface DbConnection {
-//   User: Model;
-// }
-// var db = {};
-
-// var sequelize = new Sequelize(config);
-
-console.log(2);
-var User = sequelize.define('user', {
-  username: Sequelize.STRING,
-  birthday: Sequelize.DATE
-});
-
-sequelize.sync().then(function() {
-  return User.create({
-    username: 'janedoe',
-    birthday: new Date(1980, 6, 20)
+fs
+  .readdirSync(__dirname)
+  .filter(function(file) {
+      return (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js');
+  })
+  .forEach(function(file) {
+      var model = sequelize['import'](path.join(__dirname, file));
+      db[model['name']] = model;
   });
-}).then(function(jane) {
-  console.log(jane.get({
-    plain: true
-  }));
+
+
+Object.keys(db).forEach(function(modelName) {
+  if ("associate" in db[modelName]) {
+    db[modelName].associate(db);
+  }
 });
 
-export default sequelize;
+
+db['sequelize'] = sequelize;
+db['Sequelize'] = Sequelize;
+
+export default db;
