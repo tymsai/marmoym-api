@@ -1,34 +1,33 @@
 import * as Sequelize from 'sequelize';
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  let user = sequelize.define('user', {
+  let comment = sequelize.define('comment', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
-      type: DataTypes.STRING(32),
-      allowNull: false
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING(64),
-      primaryKey: true,
-      allowNull: false
+    target_type: {
+      type: DataTypes.STRING(16),
+      allowNull: false,
+      defaultValue: "D",
     },
-    password: {
-      type: DataTypes.STRING(32),
+    target_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+     contents: {
+      type: DataTypes.STRING(512),
       allowNull: false
     },
     status: {
       type: DataTypes.STRING(32),
       allowNull: false,
-      defaultValue: "REGISTER_PENDING"
-    },
-    karma: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: "0"
+      defaultValue: "NORMAL"
     }
   }, {
     timestamps: true,
@@ -36,5 +35,5 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     freezeTableName: true
   });
 
-  return user;
+  return comment;
 }

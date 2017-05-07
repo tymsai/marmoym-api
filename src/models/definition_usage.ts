@@ -1,14 +1,18 @@
 import * as Sequelize from 'sequelize';
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes){
-  let term = sequelize.define('term', {
+  let definition_usage = sequelize.define('definition_usage', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: DataTypes.STRING(32),
+    def_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    usage_id: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
@@ -17,5 +21,5 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes){
     freezeTableName: true
   });
 
-  return term;
+  return definition_usage;
 }

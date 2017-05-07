@@ -1,40 +1,44 @@
 import * as Sequelize from 'sequelize';
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  let user = sequelize.define('user', {
+  let definition = sequelize.define('definition', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
-      type: DataTypes.STRING(32),
+    term_id: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    email: {
-      type: DataTypes.STRING(64),
-      primaryKey: true,
+    user_id: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    password: {
-      type: DataTypes.STRING(32),
+    contents: {
+      type: DataTypes.STRING(512),
       allowNull: false
     },
     status: {
       type: DataTypes.STRING(32),
       allowNull: false,
-      defaultValue: "REGISTER_PENDING"
+      defaultValue: "NORMAL"
     },
-    karma: {
+    upvote_count: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: "0"
+    },
+    downvote_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: "0"
     }
-  }, {
+  }, { 
     timestamps: true,
     underscored: true,
     freezeTableName: true
   });
-
-  return user;
+  
+  return definition;
 }
