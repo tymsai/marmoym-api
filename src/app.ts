@@ -1,11 +1,9 @@
 import * as http from 'http';
 import * as express from 'express';
-
 import config from './config'
-// import * as config from './config/server.config.dev.json';
-// import * as models from './models';
-import models from './models';
-console.log(33, models);
+import * as DatabaseService from './services/DatabaseService';
+
+import * as TempController from './controllers/TempController'
 
 // import cors from 'cors';
 // import morgan from 'morgan';
@@ -17,11 +15,17 @@ console.log(33, models);
 
 const app = express();
 app.server = http.createServer(app);
-models.sequelize.sync().then(function() {
+
+DatabaseService
+  .initialize()
+  .then(() => {
     app.server.listen(process.env.PORT || config.server.port);
     console.log(`Server started on port ${app.server.address().port}`);
-});
+  })
 
+
+
+TempController.run();
 
 // logger
 // app.use(morgan('dev'));
