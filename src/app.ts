@@ -10,11 +10,13 @@ import * as TempController from './controllers/TempController'
 // import bodyParser from 'body-parser';
 // import initializeDb from './db';
 // import middleware from './middleware';
-// import api from './api';
-// import config from './config.json';
+
+import routes from './routes'
 
 const app = express();
 app.server = http.createServer(app);
+
+app.use('/', routes)
 
 DatabaseService
   .initialize()
