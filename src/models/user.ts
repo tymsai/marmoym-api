@@ -21,7 +21,7 @@ export default function defineUser(sequelize: Sequelize.Sequelize, DataTypes) {
     status: Sequelize.STRING,
   }, {
     timestamps: true,
-    tableName: 'USERONE'
+    tableName: 'USER'
   }
   );
   return UserOne;

@@ -10,7 +10,8 @@ const sequelize = new Sequelize(
   {
     host: config.db.host,
     port: config.db.port,
-    dialect: config.db.dialect
+    dialect: config.db.dialect,
+    timezone: config.db.timezone
   }
 );
 
@@ -32,7 +33,6 @@ Object.keys(db).forEach(function(modelName) {
     db[modelName].associate(db);
   }
 });
-
 
 db['sequelize'] = sequelize;
 db['Sequelize'] = Sequelize;
