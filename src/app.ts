@@ -21,11 +21,8 @@ DatabaseService
   .then(() => {
     app.server.listen(process.env.PORT || config.server.port);
     console.log(`Server started on port ${app.server.address().port}`);
+    TempController.run();
   })
-
-
-
-TempController.run();
 
 // logger
 // app.use(morgan('dev'));

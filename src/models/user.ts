@@ -7,12 +7,24 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    email: Sequelize.STRING,
     username: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING(32),
       allowNull: false
     },
-    status: Sequelize.STRING,
+    email: {
+      type: DataTypes.STRING(64),
+      primaryKey: true,
+      allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING(32),
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING(32),
+      allowNull: false,
+      defaultValue: "REGISTER_PENDING"
+    }
   }, {
     timestamps: true,
     underscored: true,
