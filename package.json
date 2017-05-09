@@ -19,6 +19,7 @@
     "@types/sequelize": "^4.0.51"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "jsonwebtoken": "^7.4.0",
     "mysql": "^2.13.0",
