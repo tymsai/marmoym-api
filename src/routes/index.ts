@@ -4,6 +4,8 @@ import app from "../app";
 
 // import * as TempController from '../controllers/TempController';
 import temp from './temp';
+import user from './user';
+
 // import auth from './auth';
 let router = express['Router']();
 
@@ -13,6 +15,6 @@ let router = express['Router']();
 // router.get('/a', TempController.test);
 
 router.use('/temp', temp);
-// router.use('auth', auth);
+router.use('/users/', user);
 
 export default router;
