@@ -16,14 +16,13 @@ import routes from './routes'
 const app = express();
 app.server = http.createServer(app);
 
-app.use('/', routes)
+app.use('/api', routes)
 
 DatabaseService
   .initialize()
   .then(() => {
     app.server.listen(process.env.PORT || config.server.port);
     console.log(`Server started on port ${app.server.address().port}`);
-    TempController.run();
   })
 
 // logger
