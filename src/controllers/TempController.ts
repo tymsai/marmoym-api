@@ -12,6 +12,7 @@ function run() {
     console.log('succeed')
   })
 }
+
 function test(req,res) {
   console.log("HERE");
   res.send('Hello World!222')

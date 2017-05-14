@@ -8,6 +8,7 @@ import temp from './temp';
 let router = express['Router']();
 
 // router.get('/', (req, res) => {
+//   console.log(1, 11);
 //   res.send('Hello World!')
 // });
 // router.get('/a', TempController.test);

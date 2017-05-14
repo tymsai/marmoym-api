@@ -4,5 +4,4 @@ import * as TempController from '../controllers/TempController';
 
 router.get('/', TempController.test);
 
-
 export default router;
