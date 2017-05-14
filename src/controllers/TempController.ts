@@ -1,6 +1,6 @@
 import models from '../models'
 
-function run() {
+export const run = function () {
   console.log(11)
   models['user']
     .create({
@@ -19,6 +19,5 @@ function test(req,res) {
   return res
 }
 export {
-  run,
   test
 }
