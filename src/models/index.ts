@@ -8,7 +8,7 @@ import config from '../config';
  */
 
 const models: any = {};
-models['__init'] = __init
+models['init'] = __init
 
 /**
  * ...

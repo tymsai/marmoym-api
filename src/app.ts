@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as express from 'express';
 import config from './config'
-import Models from './models';
+import models from './models';
 
 // import cors from 'cors';
 // import morgan from 'morgan';
@@ -15,8 +15,8 @@ const app = express();
 
 app.use('/api', routes);
 
-Models
-  .__init()
+models
+  .init()
   .then(() => {
     app.server = http.createServer(app);
     app.server.listen(process.env.PORT || config.server.port);

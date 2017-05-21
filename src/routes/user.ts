@@ -1,6 +1,6 @@
 import * as express from 'express';
 let router = express['Router']();
-import * as UserController from '../controllers/UserController';
+import * as UserController from '../controllers/v1/UserController';
 
 router.get('/login', UserController.userLogin);
 router.get('/', UserController.userGet);
