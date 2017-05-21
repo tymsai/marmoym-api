@@ -1,12 +1,26 @@
-import models from '../models';
 import * as express from 'express';
-import app from "../app";
+import v1 from './v1'
+import {IRouter, NextFunction} from "express-serve-static-core";
 
-import user from './user';
+// let router: Router = Router();
 
-// import auth from './auth';
-let router = express['Router']();
+let router = express.Router();
 
-router.use('/users', user);
+// router.get("/", ()=> {
+//
+// })
 
-export default router;
+router.use("/", {})
+
+
+// router.use(req: Request, res: Response, next: NextFunction) => {
+//
+// })
+
+const app = express();
+
+// app.use('/v1', v1)
+
+// router.use('/v1', v1);
+
+export default app

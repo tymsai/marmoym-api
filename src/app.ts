@@ -11,16 +11,20 @@ import models from './models';
 
 import routes from './routes'
 
-const app = express();
+// app
+const app: express.Application = express();
+
+// port
+const port: number = process.env.PORT || config.server.port;
 
 app.use('/api', routes);
 
 models
   .init()
   .then(() => {
-    app.server = http.createServer(app);
-    app.server.listen(process.env.PORT || config.server.port);
-    console.log(`Server started on port ${app.server.address().port}`);
+    app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
+    })
   })
 
 // logger
