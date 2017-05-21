@@ -3,6 +3,10 @@ import * as path from 'path';
 import * as Sequelize from 'sequelize';
 import config from '../config';
 
+/**
+ * Models of database.
+ */
+
 const models: any = {};
 models['__init'] = __init
 
