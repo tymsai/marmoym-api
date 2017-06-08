@@ -19,4 +19,20 @@ router.get('/:termId', (req, res) => {
   res.send("/terms/termId")
 });
 
-export default router
+const URI = "/terms/"
+
+const resolveUrl = (segment) => {
+  return `${URI}${segment}`
+}
+
+export default (router) => {
+
+  router.get(resolveUrl('x'), () => {
+
+  });
+
+  router.get("/terms/y", () => {
+
+  })
+
+}
