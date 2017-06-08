@@ -11,6 +11,6 @@ router.get('/', (req: Request, res: Response) => {
   res.send("v1")
 })
 
-// router.use('/terms', termRoute);
+router.use('/terms', termRoute);
 
 export default router;

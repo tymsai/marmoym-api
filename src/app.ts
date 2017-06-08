@@ -14,6 +14,8 @@ import routes from './routes'
 // app
 const app: express.Application = express();
 
+console.log(1, app)
+
 // port
 const port: number = process.env.PORT || config.server.port;
 
