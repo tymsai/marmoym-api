@@ -1,7 +1,10 @@
 /**
- * ...
+ * Copyright Marmoym 2017
+ * 
+ * Created in Jun 18, 2017
  * 
  * @author Gimochi
+ * @author Enginehenryed <enignehenryed@gmail.com>
  */
 
 import * as jwt from 'jsonwebtoken'
@@ -40,7 +43,7 @@ class UserController {
    * ...
    */
   public getUserToken(userId: String){
-    console.log(1, 'getuserToken'+userId)
+    console.log(1, 'getuserToken' + userId)
     var token = jwt.sign(
         {
           id : userId
@@ -57,13 +60,19 @@ class UserController {
 
   }
 
+/**
+ * ...
+ * @param userId 
+ * @param userPw 
+ */
+  public registerUser(userId: String, userPw: String) {
+    models.user.create({
+      username: 'test1',
+      password: 'test1',
+      email: "test1"
+    })
+  }
 
-  
 }
-
-// function test(){
-//   console.log('hello');
-//   return true;
-// }
 
 export default new UserController()

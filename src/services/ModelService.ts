@@ -1,7 +1,7 @@
 /**
  * Copyright Marmoym 2017
  *
- * @author Seunghyun Park
+ * @author Enginehenryed <enginehenryed@gmail.com>
  */
 
 import models from '../models'
@@ -11,7 +11,7 @@ import models from '../models'
  */
 class ModelService {
 
-  init() {
+  public init() {
     return models['sequelize'].sync();
   }
 
