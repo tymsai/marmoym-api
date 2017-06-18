@@ -7,7 +7,9 @@
 import * as jwt from 'jsonwebtoken'
 import models from '../../../models'
 import config from '../../../config'
-
+/**
+   * ...
+   */
 class UserController {
 
   public test(input: String){
@@ -16,19 +18,27 @@ class UserController {
     return false;
 
   }
-
+ 
+  /**
+   * ...
+   */
   public getUserInfo(userId: String, userPw: String){
     models.user.findAll({
       where : {
-        id : userId
+        username : userId
       }
     }).then(function(user){
       console.log(1, user.length)
+      console.log(2, user)
+
     })
 
     return true;
   }
 
+  /**
+   * ...
+   */
   public getUserToken(userId: String){
     console.log(1, 'getuserToken'+userId)
     var token = jwt.sign(
@@ -46,6 +56,9 @@ class UserController {
     return token;
 
   }
+
+
+  
 }
 
 // function test(){
