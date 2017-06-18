@@ -1,3 +1,10 @@
+/**
+ * ...
+ * 
+ * @author Enginehenryed
+ * @author Gimochi
+ */
+
 import * as http from 'http';
 import * as express from 'express';
 import config from './config'
@@ -14,12 +21,10 @@ import routes from './routes'
 // app
 const app: express.Application = express();
 
-console.log(1, app)
-
 // port
 const port: number = process.env.PORT || config.server.port;
 
-app.use('/api', routes);
+app.use("/", routes);
 
 models
   .init()
