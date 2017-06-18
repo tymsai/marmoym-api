@@ -6,28 +6,25 @@ import config from '../config';
 /**
  * Models of database.
  */
-
 const models: any = {};
-models['init'] = __init
 
 /**
  * ...
  */
-function __init() {
-  models['sequelize'] = __connectToDB();
+function _init() {
+  models['sequelize'] = _connectToDB();
   models['Sequelize'] = Sequelize;
 
   // Mutates 'models'
-  __bootstrapModels();
+  _bootstrapModels();
 
-  return models['sequelize'].sync()
+  // return models['sequelize'].sync()
 }
 
 /**
  * ...
  */
-function __bootstrapModels() {
-
+function _bootstrapModels() {
   fs
     .readdirSync(__dirname)
     .filter(function (file) {
@@ -47,10 +44,9 @@ function __bootstrapModels() {
 }
 
 /**
- * Connects DB via Sequelize
- * Immediately invoked only once.
+ * Connects to DB via Sequelize
  */
-function __connectToDB() {
+function _connectToDB() {
   return new Sequelize(
     config.db.database,
     config.db.username,
@@ -63,5 +59,10 @@ function __connectToDB() {
     }
   );
 }
+
+/**
+ * ...
+ */
+_init();
 
 export default models;
