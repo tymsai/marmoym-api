@@ -8,7 +8,7 @@
 import models from '../../models';
 import { Router, Request, Response } from 'express';
 import termRoute from './termRoute';
-
+import userRoute from './userRoute';
 
 
 let router: Router = Router();
@@ -16,5 +16,8 @@ let router: Router = Router();
 router.get('/power', (req: Request, res: Response) => {
   res.send("power")
 })
+
+
+router.use('/user', userRoute)
 
 export default router;
