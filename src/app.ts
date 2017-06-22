@@ -10,7 +10,7 @@ import ModelService from './services/ModelService';
 
 // import cors from 'cors';
 // import morgan from 'morgan';
-// import bodyParser from 'body-parser';
+import * as bodyParser from 'body-parser';
 // import initializeDb from './db';
 // import middleware from './middleware';
 
@@ -23,6 +23,12 @@ const app: express.Application = express();
 const port: number = process.env.PORT || config.server.port;
 
 /**
+ * Parses http post request body
+ */
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+/**
  * All the routes start in the file "routes.js"
  */
 app.use("/", routes);
@@ -33,10 +39,6 @@ app.use("/", routes);
 // 3rd party middleware
 // app.use(cors({
 //   exposedHeaders: config.corsHeaders
-// }));
-
-// app.use(bodyParser.json({
-//   limit : config.bodyLimit
 // }));
 
 /**

@@ -14,7 +14,7 @@ import config from '../../../config'
 class UserController {
 
   public test(input: String){
-    console.log("hello test"+ input)
+    // console.log("hello test"+ input)
 
     return false;
 
@@ -29,8 +29,8 @@ class UserController {
         username : userId
       }
     }).then(function(user){
-      console.log(1, user.length)
-      console.log(2, user)
+      // console.log(1, user.length)
+      // console.log(2, user)
 
     })
 

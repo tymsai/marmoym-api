@@ -30,8 +30,9 @@ router.get('/join', (req: Request, res: Response) => {
 /**
  * ...
  */
-router.get('/test', (req: Request, res: Response) => {
-  UserController.getUserInfo("powerwer123123", "dsds")
+router.post('/test', (req: Request, res: Response) => {
+  console.log(1, req['body']);
+  // UserController.getUserInfo("powerwer123123", "dsds")
   res.send('test')
 })
 
@@ -39,6 +40,7 @@ router.get('/test', (req: Request, res: Response) => {
  * ...
  */
 router.get('/signup', (req: Request, res: Response) => {
+
   UserController.registerUser("test", "test");
   res.send('sign up success')
 })
