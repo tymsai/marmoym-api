@@ -1,6 +1,6 @@
 import * as Sequelize from 'sequelize';
 
-module.exports = function(sequelize: Sequelize.Sequelize, DataTypes){
+module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   let definition_pov = sequelize.define('definition_pov', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -15,7 +15,6 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes){
       type: DataTypes.INTEGER,
       allowNull: false
     }
-   
   }, {
     timestamps: true,
     underscored: true,

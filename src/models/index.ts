@@ -1,3 +1,8 @@
+/**
+ * Copyright Marmoym 2017
+ *
+ */
+
 import * as fs from 'fs';
 import * as path from 'path';
 import * as Sequelize from 'sequelize';
@@ -34,7 +39,6 @@ function _bootstrapModels() {
       let model = models.sequelize.import(path.join(__dirname, file));
       models[model['name']] = model;
     });
-
 
   Object.keys(models).forEach(function (modelName) {
     if ("associate" in models[modelName]) {

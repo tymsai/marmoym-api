@@ -2,17 +2,15 @@
  * Copyright Marmoym 2017
  * 
  * Created in Jun 18, 2017
- * 
- * @author Gimochi
- * @author Enginehenryed <enignehenryed@gmail.com>
  */
 
 import * as jwt from 'jsonwebtoken'
 import models from '../../../models'
 import config from '../../../config'
+
 /**
-   * ...
-   */
+ * ...
+ */
 class UserController {
 
   public test(input: String){
@@ -25,7 +23,7 @@ class UserController {
   /**
    * ...
    */
-  public getUserInfo(userId: String, userPw: String){
+  public getUserInfo(userId: String, userPw: String) {
     models.user.findAll({
       where : {
         username : userId
@@ -42,7 +40,7 @@ class UserController {
   /**
    * ...
    */
-  public getUserToken(userId: String){
+  public getUserToken(userId: String) {
     console.log(1, 'getuserToken' + userId)
     var token = jwt.sign(
         {

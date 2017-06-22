@@ -1,6 +1,7 @@
 /**
+ * Copyright Marmoym 2017
+ * 
  * Term routes
- * /terms
  */
 
 const URI = "/terms/"

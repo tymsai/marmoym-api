@@ -1,14 +1,12 @@
 /**
  * Copyright Marmoym 2017
- *
- * @author Gimochi
- * @author Enginehenryed
+ * 
  */
 import { Router, Request, Response } from 'express'
 import UserController from '../../controllers/v1/UserController/UserController'
 
 /**
- * Request Mapping: {url}/api/v1/user/
+ * Request Mapping: /api/v1/user/
  */
 let router: Router = Router();
 
@@ -25,14 +23,14 @@ router.get('/login', (req: Request, res: Response) => {
 /**
  * ...
  */
-router.get('/join', (req: Request, res: Response) =>{
+router.get('/join', (req: Request, res: Response) => {
   res.send('join')
 })
 
 /**
  * ...
  */
-router.get('/test', (req: Request, res: Response) =>{
+router.get('/test', (req: Request, res: Response) => {
   UserController.getUserInfo("powerwer123123", "dsds")
   res.send('test')
 })
@@ -40,7 +38,7 @@ router.get('/test', (req: Request, res: Response) =>{
 /**
  * ...
  */
-router.get('/signup', (req: Request, res: Response) =>{
+router.get('/signup', (req: Request, res: Response) => {
   UserController.registerUser("test", "test");
   res.send('sign up success')
 })

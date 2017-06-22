@@ -1,8 +1,5 @@
 /**
  * ...
- * 
- * @author Enginehenryed
- * @author Gimochi
  */
 
 import * as express from 'express';

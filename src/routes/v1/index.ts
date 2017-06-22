@@ -1,8 +1,5 @@
 /**
  * Copyright Marmoym 2017
- * 
- * @author Enginehenryed
- * @author Gimochi
  */
 
 import models from '../../models';
