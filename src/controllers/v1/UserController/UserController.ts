@@ -28,13 +28,10 @@ class UserController {
    */
   public getUserInfo(param: any) {
 
-    let encodedPw = scrypt.kdfSync(param.pw, scryptParameters).toString('Base64')
-    console.log(1, encodedPw)
 
     var result = models.user.findOne({
                     where : {
                       username : param.username,
-                      password : encodedPw,
                       status: {$not: "DELETED"}
                     }
                   }).then(function(user){
@@ -49,24 +46,25 @@ class UserController {
    */
   public getUserToken(param: any) {
     console.log(1, 'getuserToken' + param.username)
-    
+
     var result = this.getUserInfo(param)
-
     var token;
-
     if(result != null || result != 'undefined'){
-      token = jwt.sign(
-                  {
-                    id : result.username
-                  },
-                  config.server.jwtKey,
-                  {
-                    expiresIn: '7d',
-                    subject: 'userInfo'
-                  }
-                );
+      if(scrypt.verifyKdSync(result.password, param.pw)){
+    
+        token = jwt.sign(
+                    {
+                      id : result.username
+                    },
+                    config.server.jwtKey,
+                    {
+                      expiresIn: '7d',
+                      subject: 'userInfo'
+                    }
+                  );
+      }
     }
-  
+
     console.log(3, token)
     return token;
 
