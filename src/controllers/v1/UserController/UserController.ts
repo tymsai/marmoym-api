@@ -7,6 +7,9 @@
 import * as jwt from 'jsonwebtoken'
 import models from '../../../models'
 import config from '../../../config'
+import * as scrypt from 'scrypt'
+
+let scryptParameters = scrypt.paramsSync(0.1)
 
 /**
  * ...
@@ -23,14 +26,20 @@ class UserController {
   /**
    * ...
    */
-  public getUserInfo(userId: String, userPw: String) {
-    models.user.findAll({
+  public getUserInfo(param: any) {
+
+    let encodedPw = scrypt.kdfSync(param.pw, scryptParameters).toString('Base64')
+    console.log(1, encodedPw)
+
+    models.user.findOne({
       where : {
-        username : userId
+        username : param.username,
+        password : encodedPw,
+        status: {$not: "DELETED"}
       }
     }).then(function(user){
-      // console.log(1, user.length)
-      // console.log(2, user)
+      console.log(1, '겟유저인포')
+      console.log(1, user)
 
     })
 
@@ -40,16 +49,15 @@ class UserController {
   /**
    * ...
    */
-  public getUserToken(userId: String) {
-    console.log(1, 'getuserToken' + userId)
+  public getUserToken(param: any) {
+    console.log(1, 'getuserToken' + param.username)
     var token = jwt.sign(
         {
-          id : userId
+          id : param.username
         },
         config.server.jwtKey,
         {
           expiresIn: '7d',
-          issuer: 'kweb.korea.ac.kr',
           subject: 'userInfo'
         }
       );
@@ -63,13 +71,94 @@ class UserController {
  * @param userId 
  * @param userPw 
  */
-  public registerUser(userId: String, userPw: String) {
-    models.user.create({
-      username: 'test1',
-      password: 'test1',
-      email: "test1"
-    })
+  public registerUser(param: any) {
+    
+    if(!this.checkUsernameExist(param.username)){
+      return false;
+    }
+
+    if(!this.checkUserEmailExist(param.email)){
+      return false;
+    }
+
+    let encodedPw = scrypt.kdfSync(param.pw, scryptParameters).toString('Base64')
+
+    if(models.user.create({
+          username: param.username,
+          password: encodedPw,
+          email: param.email
+        }).then(
+          function(result){
+            console.log('회원가입완료')
+            return true;
+          }
+        ).catch(
+          function(err){
+            console.log(err)
+            return false;
+          }
+        )
+    ){
+      return true;
+    }
+    return false;
   }
+
+  public checkUsernameExist(input: String){
+    if(models.user.count({
+          where: {
+            status: {$not: "DELETED"},
+            username: input    
+          }
+        }).then(
+          function(result){
+            if(result == 0){  
+              console.log('아이디중복없음')
+              return true;
+            }else{
+              return false;
+            }
+          }
+        )
+        .catch(
+          function(err){
+            console.log(err)
+            return false;
+          }
+        )
+      ){
+      return true;
+    }
+    return false;
+  }
+
+  public checkUserEmailExist(input: String){
+    if(models.user.count({
+          where: {
+            status: {$not: "DELETED"},
+            email: input    
+          }
+        }).then(
+          function(result){
+            if(result == 0){
+              console.log('이메일중복없음')
+              return true;
+            }else{
+              return false;
+            }
+          }
+        ).catch(
+          function(err){
+            console.log(err)
+            return false;
+          }
+        )
+      ){
+      return true;
+    }
+    return false;
+  }
+
 
 }
 

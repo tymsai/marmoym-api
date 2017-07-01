@@ -13,18 +13,24 @@ let router: Router = Router();
 /**
  * ...
  */
-router.get('/login', (req: Request, res: Response) => {
-  console.log("hello")
-  var result = UserController.getUserToken("admin");
-  console.log(1, result)
+router.post('/login', (req: Request, res: Response) => {
+  console.log(req.body)
+  var result = UserController.getUserInfo(req.body);
   res.send("hello"+result)
 })
 
 /**
  * ...
  */
-router.get('/join', (req: Request, res: Response) => {
-  res.send('join')
+router.post('/join', (req: Request, res: Response) => {
+  console.log(req.body)
+  var result = UserController.registerUser(req.body)  
+  if(result){
+    res.send("join SUCCESS")
+  }else{
+    res.send("join FAILED")
+  }
+
 })
 
 /**
@@ -41,7 +47,7 @@ router.post('/test', (req: Request, res: Response) => {
  */
 router.get('/signup', (req: Request, res: Response) => {
 
-  UserController.registerUser("test", "test");
+  // UserController.registerUser("test", "test");
   res.send('sign up success')
 })
 
