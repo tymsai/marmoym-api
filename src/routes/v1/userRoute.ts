@@ -14,9 +14,17 @@ let router: Router = Router();
  * ...
  */
 router.post('/login', (req: Request, res: Response) => {
+ 
   console.log(req.body)
+
   var result = UserController.getUserInfo(req.body);
-  res.send("hello"+result)
+  
+  if(result != null || result != 'undefined'){
+      res.send("login SUCCESS" + result)
+  }else{
+    res.send("login FAILED")
+  }
+
 })
 
 /**
@@ -33,22 +41,5 @@ router.post('/join', (req: Request, res: Response) => {
 
 })
 
-/**
- * ...
- */
-router.post('/test', (req: Request, res: Response) => {
-  console.log(1, req['body']);
-  // UserController.getUserInfo("powerwer123123", "dsds")
-  res.send('test')
-})
-
-/**
- * ...
- */
-router.get('/signup', (req: Request, res: Response) => {
-
-  // UserController.registerUser("test", "test");
-  res.send('sign up success')
-})
 
 export default router;
