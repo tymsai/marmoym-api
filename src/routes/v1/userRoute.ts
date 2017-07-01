@@ -41,5 +41,28 @@ router.post('/join', (req: Request, res: Response) => {
 
 })
 
+/**
+ * ...
+ */
+router.get('/check_username_exist:username', (req: Request, res: Response) =>{
+  var result = UserController.checkUsernameExist(req.params.username)
+  if(result){
+    res.send("username exist")
+  }else{
+    res.send("username not exist")
+  }
+})
+
+/**
+ * ...
+ */
+router.get('/check_useremail_exist:useremail', (req: Request, res: Response) =>{
+  var result = UserController.checkUserEmailExist(req.params.useremail)
+  if(result){
+    res.send("useremail exist")
+  }else{
+    res.send("useremail not exist")
+  }
+})
 
 export default router;
