@@ -17,10 +17,12 @@ router.post('/login', (req: Request, res: Response) => {
  
   console.log(req.body)
 
-  var result = UserController.getUserInfo(req.body);
+  var result = UserController.getUserToken(req.body);
   
   if(result != null || result != 'undefined'){
-      res.send("login SUCCESS" + result)
+      result.then(function(value){
+        res.send("login SUCCESS"+value)
+      })
   }else{
     res.send("login FAILED")
   }

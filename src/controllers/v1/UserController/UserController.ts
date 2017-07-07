@@ -8,9 +8,10 @@ import * as jwt from 'jsonwebtoken'
 import models from '../../../models'
 import config from '../../../config'
 import * as scrypt from 'scrypt'
+import * as bcrypt from 'bcrypt'
 
-let scryptParameters = scrypt.paramsSync(0.1)
 
+let saltRounds = 10;
 /**
  * ...
  */
@@ -27,46 +28,68 @@ class UserController {
    * ...
    */
   public getUserInfo(param: any) {
+    console.log(1, 'getUserInfo' + param)
 
-
-    var result = models.user.findOne({
+    return models.user.findOne({
                     where : {
                       username : param.username,
                       status: {$not: "DELETED"}
                     }
                   }).then(function(user){
+                    console.log(1231231, user)
                       return user;
                   })
-  
-    return result;
+    // console.log(1, await result.user)
+    // return await result;
   }
 
   /**
    * ...
    */
   public getUserToken(param: any) {
-    console.log(1, 'getuserToken' + param.username)
 
-    var result = this.getUserInfo(param)
+    console.log(1, 'getuserToken' + param.pw)
     var token;
-    if(result != null || result != 'undefined'){
-      if(scrypt.verifyKdSync(result.password, param.pw)){
-    
-        token = jwt.sign(
-                    {
-                      id : result.username
-                    },
-                    config.server.jwtKey,
-                    {
-                      expiresIn: '7d',
-                      subject: 'userInfo'
-                    }
-                  );
-      }
-    }
+    var result = this.getUserInfo(param)
+    return result.then(function(user){
+     
+      
+        if(bcrypt.compareSync(param.pw, user.password)){
+          console.log(1, '1231231@2@@@@@@@@')
+          token = jwt.sign(
+                      {
+                        id : user.username
+                      },
+                      config.server.jwtKey,
+                      {
+                        expiresIn: '7d',
+                        subject: 'userInfo'
+                      }
+                    );
+        }
 
-    console.log(3, token)
-    return token;
+        console.log(3, token)
+        return token;
+
+    })
+    
+    // if(result != null || result != 'undefined'){
+    //   if(scrypt.verifyKdfSync(result, param.pw)){
+    
+    //     token = jwt.sign(
+    //                 {
+    //                   id : result.username
+    //                 },
+    //                 config.server.jwtKey,
+    //                 {
+    //                   expiresIn: '7d',
+    //                   subject: 'userInfo'
+    //                 }
+    //               );
+    //   }
+    // }
+
+   
 
   }
 
@@ -85,7 +108,7 @@ class UserController {
       return false;
     }
 
-    let encodedPw = scrypt.kdfSync(param.pw, scryptParameters).toString('Base64')
+    let encodedPw = bcrypt.hashSync(param.pw, saltRounds);
 
     if(models.user.create({
           username: param.username,
