@@ -41,9 +41,9 @@ class UserController {
 
     var token;
 
-    return this.getUserInfo(param).then(function(user){
+    return this.getUserInfo(param).then(function(user) {
    
-      if(bcrypt.compareSync(param.pw, user.password)){
+      if(bcrypt.compareSync(param.pw, user.password)) {
         token = jwt.sign(
                 {
                   id : user.username
@@ -68,11 +68,11 @@ class UserController {
  */
   public registerUser(param: any) {
     
-    if(!this.checkUsernameExist(param.username)){
+    if(!this.checkUsernameExist(param.username)) {
       return false;
     }
 
-    if(!this.checkUserEmailExist(param.email)){
+    if(!this.checkUserEmailExist(param.email)) {
       return false;
     }
 
@@ -100,7 +100,7 @@ class UserController {
   /**
    * ...
    */
-  public checkUsernameExist(input: String){
+  public checkUsernameExist(input: String) {
     if(models.user.count({
           where: {
             status: {$not: "DELETED"},
@@ -131,7 +131,7 @@ class UserController {
   /**
    * ...
    */
-  public checkUserEmailExist(input: String){
+  public checkUserEmailExist(input: String) {
     if(models.user.count({
           where: {
             status: {$not: "DELETED"},

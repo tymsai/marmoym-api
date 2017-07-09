@@ -13,7 +13,7 @@ let router: Router = Router();
 /**
  * ...
  */
-router.get('/check_username_exist:username', (req: Request, res: Response) =>{
+router.get('/check_username_exist:username', (req: Request, res: Response) => {
   var result = UserController.checkUsernameExist(req.params.username)
   if(result){
     res.send("username exist")
@@ -25,7 +25,7 @@ router.get('/check_username_exist:username', (req: Request, res: Response) =>{
 /**
  * ...
  */
-router.get('/check_useremail_exist:useremail', (req: Request, res: Response) =>{
+router.get('/check_useremail_exist:useremail', (req: Request, res: Response) => {
   var result = UserController.checkUserEmailExist(req.params.useremail)
   if(result){
     res.send("useremail exist")
