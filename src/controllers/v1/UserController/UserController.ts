@@ -7,28 +7,22 @@
 import * as jwt from 'jsonwebtoken'
 import models from '../../../models'
 import config from '../../../config'
-import * as scrypt from 'scrypt'
 import * as bcrypt from 'bcrypt'
 
 
 let saltRounds = 10;
+
+
 /**
  * ...
  */
 class UserController {
-
-  public test(input: String){
-    // console.log("hello test"+ input)
-
-    return false;
-
-  }
  
+
   /**
    * ...
    */
   public getUserInfo(param: any) {
-    console.log(1, 'getUserInfo' + param)
 
     return models.user.findOne({
                     where : {
@@ -36,11 +30,8 @@ class UserController {
                       status: {$not: "DELETED"}
                     }
                   }).then(function(user){
-                    console.log(1231231, user)
                       return user;
                   })
-    // console.log(1, await result.user)
-    // return await result;
   }
 
   /**
@@ -48,50 +39,27 @@ class UserController {
    */
   public getUserToken(param: any) {
 
-    console.log(1, 'getuserToken' + param.pw)
     var token;
-    var result = this.getUserInfo(param)
-    return result.then(function(user){
-     
-      
-        if(bcrypt.compareSync(param.pw, user.password)){
-          console.log(1, '1231231@2@@@@@@@@')
-          token = jwt.sign(
-                      {
-                        id : user.username
-                      },
-                      config.server.jwtKey,
-                      {
-                        expiresIn: '7d',
-                        subject: 'userInfo'
-                      }
-                    );
-        }
 
-        console.log(3, token)
-        return token;
-
-    })
-    
-    // if(result != null || result != 'undefined'){
-    //   if(scrypt.verifyKdfSync(result, param.pw)){
-    
-    //     token = jwt.sign(
-    //                 {
-    //                   id : result.username
-    //                 },
-    //                 config.server.jwtKey,
-    //                 {
-    //                   expiresIn: '7d',
-    //                   subject: 'userInfo'
-    //                 }
-    //               );
-    //   }
-    // }
-
+    return this.getUserInfo(param).then(function(user){
    
+      if(bcrypt.compareSync(param.pw, user.password)){
+        token = jwt.sign(
+                {
+                  id : user.username
+                },
+               config.server.jwtKey,
+                {
+                  expiresIn: '7d',
+                  subject: 'userInfo'
+                }
+              );
+      }
+      return token;
 
-  }
+  })
+
+}
 
 /**
  * ...
@@ -116,21 +84,22 @@ class UserController {
           email: param.email
         }).then(
           function(result){
-            console.log('회원가입완료')
             return true;
           }
         ).catch(
           function(err){
-            console.log(err)
             return false;
           }
         )
-    ){
+      ){
       return true;
     }
     return false;
   }
 
+  /**
+   * ...
+   */
   public checkUsernameExist(input: String){
     if(models.user.count({
           where: {
@@ -159,6 +128,9 @@ class UserController {
     return false;
   }
 
+  /**
+   * ...
+   */
   public checkUserEmailExist(input: String){
     if(models.user.count({
           where: {

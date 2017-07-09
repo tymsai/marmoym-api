@@ -13,39 +13,6 @@ let router: Router = Router();
 /**
  * ...
  */
-router.post('/login', (req: Request, res: Response) => {
- 
-  console.log(req.body)
-
-  var result = UserController.getUserToken(req.body);
-  
-  if(result != null || result != 'undefined'){
-      result.then(function(value){
-        res.send("login SUCCESS"+value)
-      })
-  }else{
-    res.send("login FAILED")
-  }
-
-})
-
-/**
- * ...
- */
-router.post('/join', (req: Request, res: Response) => {
-  console.log(req.body)
-  var result = UserController.registerUser(req.body)  
-  if(result){
-    res.send("join SUCCESS")
-  }else{
-    res.send("join FAILED")
-  }
-
-})
-
-/**
- * ...
- */
 router.get('/check_username_exist:username', (req: Request, res: Response) =>{
   var result = UserController.checkUsernameExist(req.params.username)
   if(result){
@@ -66,5 +33,35 @@ router.get('/check_useremail_exist:useremail', (req: Request, res: Response) =>{
     res.send("useremail not exist")
   }
 })
+
+/**
+ * ...
+ */
+router.post('/login', (req: Request, res: Response) => {
+ 
+  console.log(req.body)
+
+  var result = UserController.getUserToken(req.body);
+  
+  result.then(function(value){
+      res.send("login SUCCESS"+value)
+  })
+
+})
+
+/**
+ * ...
+ */
+router.post('/join', (req: Request, res: Response) => {
+  console.log(req.body)
+  var result = UserController.registerUser(req.body)  
+  if(result){
+    res.send("join SUCCESS")
+  }else{
+    res.send("join FAILED")
+  }
+
+})
+
 
 export default router;
