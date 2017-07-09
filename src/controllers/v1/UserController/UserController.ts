@@ -29,7 +29,7 @@ class UserController {
                       username : param.username,
                       status: {$not: "DELETED"}
                     }
-                  }).then(function(user){
+                  }).then((user) => {
                       return user;
                   })
   }
@@ -41,7 +41,7 @@ class UserController {
 
     var token;
 
-    return this.getUserInfo(param).then(function(user) {
+    return this.getUserInfo(param).then( (user) => {
    
       if(bcrypt.compareSync(param.pw, user.password)) {
         token = jwt.sign(
@@ -83,11 +83,11 @@ class UserController {
           password: encodedPw,
           email: param.email
         }).then(
-          function(result){
+          (result) => {
             return true;
           }
         ).catch(
-          function(err){
+          (err) => {
             return false;
           }
         )
@@ -107,7 +107,7 @@ class UserController {
             username: input    
           }
         }).then(
-          function(result){
+          (result) => {
             if(result == 0){  
               console.log('아이디중복없음')
               return true;
@@ -117,7 +117,7 @@ class UserController {
           }
         )
         .catch(
-          function(err){
+          (err) => {
             console.log(err)
             return false;
           }
@@ -138,7 +138,7 @@ class UserController {
             email: input    
           }
         }).then(
-          function(result){
+          (result) => {
             if(result == 0){
               console.log('이메일중복없음')
               return true;
@@ -147,7 +147,7 @@ class UserController {
             }
           }
         ).catch(
-          function(err){
+          (err) => {
             console.log(err)
             return false;
           }
