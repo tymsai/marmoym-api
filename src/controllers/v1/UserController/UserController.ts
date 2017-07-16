@@ -62,6 +62,20 @@ class UserController {
 }
 
 /**
+   * ...
+*/
+public verifyUserToken(input_token: string) {
+  try {
+    var decoded = jwt.verify(input_token, config.server.jwtKey);
+  } catch(err) {
+    console.log(1, decoded)
+    return false;
+  }
+  console.log(1, decoded)
+  return true;
+}
+
+/**
  * ...
  * @param userId 
  * @param userPw 
@@ -158,6 +172,63 @@ class UserController {
     return false;
   }
 
+  /**
+   * ...
+   */
+  public updateUserInfo(param: any) {
+    if(!this.checkUserEmailExist(param.email)) {
+      return false;
+    }
+
+    let encodedPw = bcrypt.hashSync(param.pw, saltRounds);
+
+    if(models.user.update({
+          password: encodedPw,
+          email: param.email
+        },{
+          where : {
+            username : param.username
+          }
+        }).then(
+          (result) => {
+            return true;
+          }
+        ).catch(
+          (err) => {
+            return false;
+          }
+        )
+      ){
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * ...
+   */
+  public deleteUser(param: any) {
+    
+    if(models.user.update({
+        status: 'DELETE'
+        },{
+          where : {
+            username : param.username
+          }
+        }).then(
+          (result) => {
+            return true;
+          }
+        ).catch(
+          (err) => {
+            return false;
+          }
+        )
+      ){
+      return true;
+    }
+    return false;
+  }
 
 }
 

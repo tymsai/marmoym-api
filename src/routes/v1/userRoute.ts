@@ -63,5 +63,34 @@ router.post('/join', (req: Request, res: Response) => {
 
 })
 
+router.use('/update', (req: Request, res: Response, next : NextFunction ) => {
+  console.log(1, 'sibalslslsl')
+  next();
+});
+
+router.put('/update', (req: Request, res: Response) => {
+  // var result = UserController.updateUserInfo(req.body)
+  console.log(1, 'sdsdsd')
+  var result = true;
+  if(result){
+    res.send("update SUCCESS")
+  }else{
+    res.send("update FAILED")
+  }
+})
+
+router.use('/delete', (req: Request, res: Response, next : NextFunction ) => {
+  UserController.verifyUserToken(req.body.param)
+  next();
+});
+
+router.delete('delete', (req: Request, res: Response) => {
+  var result = UserController.deleteUser(req.body)
+  if(result){
+    res.send("delete SUCCESS")
+  }else{
+    res.send("delete FAILED")
+  }
+})
 
 export default router;
