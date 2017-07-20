@@ -63,7 +63,7 @@ router.post('/join', (req: Request, res: Response) => {
 
 })
 
-router.use('/update', (req: Request, res: Response, next : NextFunction ) => {
+router.use('/update', (req: Request, res: Response, next: NextFunction ) => {
   console.log(1, 'sibalslslsl')
   next();
 });
