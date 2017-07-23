@@ -75,10 +75,15 @@ router.post('/join', (req: Request, res: Response) => {
 })
 
 router.use('/update', (req: Request, res: Response, next: NextFunction ) => {
-  if(UserController.verifyUserToken(req.headers['x-access-token']) == 'Verify'){
+  var result = UserController.verifyUserToken(req.headers['x-access-token'], req.body)
+  if(result == 'Authorized'){
     next();
-  }else{
-    res.status(401).json({code: 0, message: 'Token Valid Fail'})
+  }else if(result == 'NotAuthorized'){
+    res.status(401).json({code: 0, message: 'Not Authorized'})
+  }else if(result == 'TokenValidError'){
+    res.status(401).json({code: 0, message: "Token Valid Fail"})
+  }else {
+    res.send(500).json({code: 0, message: 'Internal Server Error'})
   }
 });
 
@@ -94,10 +99,15 @@ router.put('/update', (req: Request, res: Response) => {
 })
 
 router.use('/delete', (req: Request, res: Response, next : NextFunction ) => {
-  if(UserController.verifyUserToken(req.headers['x-access-token'])){
+  var result = UserController.verifyUserToken(req.headers['x-access-token'], req.body)
+  if(result == 'Authorized'){
     next();
-  }else{
-    res.status(401).json({code: 0, message: 'Token Valid Fail'})
+  }else if(result == 'NotAuthorized'){
+    res.status(401).json({code: 0, message: 'Not Authorized'})
+  }else if(result == 'TokenValidError'){
+    res.status(401).json({code: 0, message: "Token Valid Fail"})
+  }else {
+    res.send(500).json({code: 0, message: 'Internal Server Error'})
   }
 });
 

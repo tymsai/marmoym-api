@@ -46,7 +46,7 @@ class UserController {
         if(bcrypt.compareSync(param.pw, user.password)) {
           token = jwt.sign(
                   {
-                    id : user.username
+                    username : user.username
                   },
                 config.server.jwtKey,
                   {
@@ -66,15 +66,19 @@ class UserController {
 /**
    * ...
 */
-public verifyUserToken(input_token: string) {
+public verifyUserToken(input_token: string, param: any) {
   try {
     var decoded = jwt.verify(input_token, config.server.jwtKey);
   } catch(err) {
-    return "Error";
+    return "TokenValidError";
   }
-  console.log(1, decoded)
-  //TODO 사용자권한 체크
-  return "Verify";
+  
+  if(decoded.username == param.username){ //본인
+    return "Authorized"
+  }else{ //본인아님
+    return "NotAuthorized"
+  }
+
 }
 
 /**
@@ -186,7 +190,7 @@ public verifyUserToken(input_token: string) {
     }
 
     let encodedPw = bcrypt.hashSync(param.pw, saltRounds);
-
+    
     if(models.user.update({
           password: encodedPw,
           email: param.email
