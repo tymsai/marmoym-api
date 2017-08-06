@@ -10,7 +10,7 @@ export async function getDefinitionByTermId(termId: any) {
       $or : [
         {term_id : termId}
       ]
-    }})
+  }})
     .then(definitions => definitions)
     .catch(err => {
       console.log(err)

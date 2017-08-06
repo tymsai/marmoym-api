@@ -17,7 +17,8 @@ export const getUserInfo = async function getUserInfo(params: any) {
     where : {
       username : params.username,
       status: {$not: "DELETED"}
-    }})
+    }
+  })
     .then((user) => user)
   return userInfo
 }
@@ -97,7 +98,8 @@ export const checkUsernameExist = async function checkUsernameExist(input: Strin
     where: {
       status: {$not: "DELETED"},
       username: input    
-    }})
+    }
+  })
     .then(result => {
       if (result == 0) {
         return true;
@@ -118,7 +120,8 @@ export const checkUserEmailExist = async function checkUserEmailExist(input: Str
     where: {
       status: {$not: "DELETED"},
       email: input    
-    }})
+    }
+  })
     .then(result => result == 0 ? true : false)
     .catch(err => false)
 
@@ -134,17 +137,16 @@ export const updateUserInfo = async function updateUserInfo(params: any) {
   }
 
   let encodedPw = bcrypt.hashSync(params.pw, saltRounds);
-  var updateResult = await models.user.update(
-    {
-      password: encodedPw,
-      email: params.email
-    },
-    {
-      where : {
-        username : params.username
-    }})
-      .then(result => true)
-      .catch(err => false)
+  var updateResult = await models.user.update({
+    password: encodedPw,
+    email: params.email
+  }, {
+    where : {
+      username : params.username
+    }
+  })
+    .then(result => true)
+    .catch(err => false)
 
   return updateResult ? "UpdateSuccess" : "Error";
 }
@@ -153,15 +155,13 @@ export const updateUserInfo = async function updateUserInfo(params: any) {
  * ...
  */
 export const deleteUser = async function deleteUser(params: any) {
-  var deleteResult = await models.user.update(
-    {
-      status: 'DELETE'
-    },
-    {
-      where : {
-        username : params.username
-      }
-    })
+  var deleteResult = await models.user.update({
+    status: 'DELETE'
+  }, {
+    where : {
+      username : params.username
+    }
+  })
     .then(result => true)
     .catch(err => false)
 

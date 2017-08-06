@@ -36,7 +36,8 @@ export const checkTermNameExist = async function checkTermNameExist(input_name: 
     where: {
       status : {$not: "DELETED"},
       name : input_name   
-    }})
+    }
+  })
     .then(result => result == 0 ? true : false)
     .catch(err => false)
   ) {
