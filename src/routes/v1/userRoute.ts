@@ -2,7 +2,9 @@
  * Copyright Marmoym 2017
  */
 import { Router, Request, Response, NextFunction } from 'express'
+
 import * as UserController from '../../controllers/v1/UserController/UserController'
+import * as responseService from '../../services/responseService';
 
 /**
  * Request Mapping: /api/v1/user/
