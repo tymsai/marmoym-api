@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 
 import { respond } from '../../services/responseService';
+import* as jwt from 'jsonwebtoken';
 
 let router: Router = Router();
 
@@ -18,8 +19,10 @@ const b = () => {
   return a;
 }
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWF0IjoxNTAyMzgzMTQ3fQ.uELJhn4IEc-8D6zbUVVTfchkTuVrxQYi8yCLzSzpg0g
 router.get('/', async (req: Request, res: Response) => {
-  console.log(22)
+  const token = jwt.sign({username: 'test2'}, 'secret');
+  console.log(1, token)
 
   respond(res, b());
   // b().then((r) => {

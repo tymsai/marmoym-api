@@ -10,6 +10,7 @@ import * as bodyParser from 'body-parser';
 // import morgan from 'morgan';
 
 import config from './config'
+import * as errorHandleService from './services/errorHandleService';
 // import initializeDb from './db';
 // import middleware from './middleware';
 
@@ -43,6 +44,8 @@ app.use("/", routes);
 // app.use(cors({
 //   exposedHeaders: config.corsHeaders
 // }));
+
+app.use(errorHandleService.handleError);
 
 /**
  * ...
