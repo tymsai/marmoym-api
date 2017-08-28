@@ -7,11 +7,11 @@ export default {
     code: 401000,
     msg: "text" // TODO: to be changed soon
   },
-  "INVALID_TOKEN": {
+  "TOKEN_INVALID": {
     code: 401002,
     msg: "Invalid token"
   },
-  "NOT_EQUAL_USERNAME": {
+  "USERNAME_NOT_EQUAL": {
     code: 401003,
     msg: "Not equal username"
   }

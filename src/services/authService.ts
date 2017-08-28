@@ -1,9 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 import * as winston from 'winston';
-
+import MarmoymError from '../models/MarmoymError'
 import config from '../config';
-import UserError from "../constants/ErrorType/UserError";
-
+import UserError from '../constants/ErrorType/UserError';
 
 /**
  * ...
@@ -14,13 +13,13 @@ const _verifyUserToken = async (token: string, username: any) => {
     decoded = jwt.verify(token, config.auth.jwtSecret);
     winston.debug('JWT decoded: ', decoded);
   } catch(err) {
-    throw UserError.INVALID_TOKEN;
+    throw new MarmoymError(UserError.TOKEN_INVALID);
   }
 
   if (decoded.username == username) {
     return decoded;
   } else {
-    throw UserError.NOT_EQUAL_USERNAME;
+    throw new MarmoymError(UserError.USERNAME_NOT_EQUAL);
   }
 };
 

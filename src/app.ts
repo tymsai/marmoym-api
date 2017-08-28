@@ -1,20 +1,14 @@
 /**
  * Copyright Marmoym 2017
  */
-import * as http from 'http';
 import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
-import * as path from 'path';
-import * as https from 'https';
 import * as winston from 'winston';
-
 import config from './config'
 import * as errorHandleService from './services/errorHandleService';
-
 import routes from './routes';
 import database from './database';
-import * as fs from "fs";
 
 const app: express.Application = express();
 const port: number = process.env.PORT || config.server['marmoym-dev1'].port;

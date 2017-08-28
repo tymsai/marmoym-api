@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import config from '../../config';
 import { db1 } from '../../database';
 import MarmoymError from '../../models/MarmoymError';
-import ErrorType from '../../constants/ErrorType';
+import UserError from '../../constants/ErrorType/UserError';
 
 export const signInUser = async (userInfo) => {
   const User =  db1.User;
@@ -16,7 +16,7 @@ export const signInUser = async (userInfo) => {
       }
     })
     .catch(() => {  // TODO: 이 catch 문은 차후 에러 오브젝트를 디자인하고 수정해야함
-      throw new MarmoymError(ErrorType.USER_NOT_FOUND);
+      throw new MarmoymError(UserError.USER_NOT_FOUND);
     })
     .then(res => {
       const user = res.dataValues;
@@ -33,7 +33,7 @@ export const signInUser = async (userInfo) => {
           }
         );
       } else {
-        throw new MarmoymError(ErrorType.USER_INCORRECT_PASSWORD);
+        throw new MarmoymError(UserError.USER_INCORRECT_PASSWORD);
       }
     });
 }

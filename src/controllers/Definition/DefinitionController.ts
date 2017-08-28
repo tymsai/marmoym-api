@@ -1,4 +1,4 @@
-import {db1} from '../../database';
+import { db1 } from '../../database';
 import * as winston from 'winston';
 
 /**
@@ -7,9 +7,9 @@ import * as winston from 'winston';
 export async function getDefinitionByTermId(termId: any) {
   var list = await db1.definition.findAll({
     where: {
-      status: {$not: "DELETED"},
+      status: { $not: "DELETED" },
       $or: [
-        {term_id: termId}
+        { term_id: termId }
       ]
     }
   })

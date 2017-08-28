@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import { respond } from '../../services/responseService';
 import { tokenAuthHandler } from '../../services/authService';
 import MarmoymError from '../../models/MarmoymError';
-import ErrorType from '../../constants/ErrorType';
+import UserError from '../../constants/ErrorType/UserError';
 import { db1 } from '../../database';
 
 /**
@@ -22,7 +22,7 @@ router.get('/', tokenAuthHandler, async (req: Request, res: Response) => {
 });
 
 router.get("/a", (req, res) => {
-  throw new MarmoymError(ErrorType.USER_INCORRECT_PASSWORD);
+  throw new MarmoymError(UserError.USER_INCORRECT_PASSWORD);
 })
 
 router.get("/b", (req, res) => {
