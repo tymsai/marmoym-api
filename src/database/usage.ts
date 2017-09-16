@@ -11,10 +11,6 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    def_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     contents: {
       type: DataTypes.STRING(512),
       allowNull: false
@@ -27,7 +23,15 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   }, {
     timestamps: true,
     underscored: true,
-    freezeTableName: true
+    freezeTableName: true,
+    classMethods: {
+      associate: function (models) {
+        Usage.belongsToMany(models.Definition, {
+          as: "definitions",
+          through: "DefinitionUsage"
+        });
+      }
+    }
   });
   return Usage;
 }

@@ -20,7 +20,8 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   }, {
     timestamps: true,
     underscored: true,
-    freezeTableName: true
+    freezeTableName: true,
   });
+
   return Term;
 }
