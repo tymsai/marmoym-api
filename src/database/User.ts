@@ -1,5 +1,20 @@
 import * as Sequelize from 'sequelize';
 
+export interface UserAttributes {
+  id?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+  status?: any;
+  karma?: number;
+}
+
+export interface UserInstance extends Sequelize.Instance<UserAttributes> {
+  createdAt?: Date;
+  modifiedAt?: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const User = sequelize.define('User', {
     id: {

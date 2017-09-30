@@ -6,6 +6,7 @@ import * as path from 'path';
 import * as Sequelize from 'sequelize';
 
 import config from '../config';
+import { Model } from '@src/models/ModelTypes';
 
 const DB_PATH = __dirname;
 
@@ -46,7 +47,6 @@ const _connect = (serverName) => {
 const _instantiateDB = (serverName) => {
   let models = {};
   models['sequelize'] = _connect(serverName);
-  models['Sequelize'] = Sequelize;
   models = _bootstrapModels(models);
   return models;
 }
@@ -57,12 +57,14 @@ const _instantiateDB = (serverName) => {
  */
 const init = () => {
   return Promise.all([
-    db1['sequelize'].sync()
+    db1['sequelize'].sync({
+      force: true
+    })
     // ,db2['sequelize'].sync() for future additions.
   ]);
 };
 
-export const db1: any = _instantiateDB('marmoym_dev1');
+export const db1: Model = <Model>_instantiateDB('marmoym_dev1');
 
 export default {
   init
