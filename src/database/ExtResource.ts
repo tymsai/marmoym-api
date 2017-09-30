@@ -1,5 +1,17 @@
 import * as Sequelize from 'sequelize';
 
+export interface ExtResourceAttributes {
+  id?: number;
+  url?: string;
+  status?: any;
+}
+
+export interface ExtResourceInstance extends Sequelize.Instance<ExtResourceAttributes>{
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const ExtResource = sequelize.define('ExtResource', {
     id: {

@@ -4,6 +4,7 @@ import { DefinitionAttributes, DefinitionInstance } from '@src/database/Definiti
 import { VoteAttributes, VoteInstance } from '@src/database/Vote';
 import { OriginAttributes, OriginInstance } from '@src/database/Origin';
 import { CommentAttributes, CommentInstance} from '@src/database/Comment';
+import { ExtResourceAttributes, ExtResourceInstance }from '@src/database/ExtResource';
 
 export interface Model {
   sequelize?: Sequelize.Sequelize;
@@ -12,4 +13,5 @@ export interface Model {
   Vote: Sequelize.Model<VoteInstance, VoteAttributes>; 
   Origin: Sequelize.Model<OriginInstance, OriginAttributes>;
   Comment: Sequelize.Model<CommentInstance, CommentAttributes>;
+  ExtResource: Sequelize.Model<ExtResourceInstance, ExtResourceAttributes>;
 }
