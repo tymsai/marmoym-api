@@ -1,5 +1,19 @@
 import * as Sequelize from 'sequelize';
 
+export interface OriginAttributes {
+  id?: string;
+  label?: string;
+  status?: any;
+  termId?: number;
+  DefinitionId?: number;
+}
+
+export interface OriginInstance extends Sequelize.Instance<OriginAttributes> {
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const Origin = sequelize.define('Origin', {
     id: {
@@ -7,7 +21,7 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    url: {
+    label: {
       type: DataTypes.STRING(512),
       allowNull: true
     },
