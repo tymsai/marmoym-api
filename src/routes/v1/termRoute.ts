@@ -3,8 +3,6 @@
  */
 import { Router, Request, Response } from 'express'
 
-import * as TermGetController from '../../controllers/Term/TermGetController';
-import * as TermAddController from '../../controllers/Term/TermAddController';
 import { respond } from '../../services/responseService';
 
 /**
@@ -20,15 +18,15 @@ router.route('/')
    * ...
    */
   .get(async (req: Request, res: Response) => {
-    const result = await TermGetController.getTermList(req);
-    respond(res, result);
+    // const result = await TermGetController.getTermList(req);
+    // respond(res, result);
   })
 
   /**
    * ...
    */
   .post(async (req: Request, res: Response) => {
-    respond(res, await TermAddController.addTerm(req));
+    // respond(res, await TermAddController.addTerm(req));
   })
 
   /**

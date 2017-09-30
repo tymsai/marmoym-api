@@ -1,15 +1,20 @@
 import * as Sequelize from 'sequelize';
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  const Pos = sequelize.define('Pos', {
+  const Origin = sequelize.define('Origin', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    url: {
+      type: DataTypes.STRING(512),
+      allowNull: true
+    },
+    status: {
       type: DataTypes.STRING(32),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "NORMAL"
     }
   }, {
     timestamps: true,
@@ -17,11 +22,11 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function (models) {
-        Pos.belongsToMany(models.Definition, {
-          through: "DefinitionPos",
-        });
+        Origin.belongsToMany(models.Definition, {
+          through: 'DefinitionOrigin'
+        })
       }
     }
   });
-  return Pos;
-}
+  return Origin;
+};

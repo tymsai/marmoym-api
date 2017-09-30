@@ -7,18 +7,17 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    target_type: {
-      type: DataTypes.STRING(16),
-      allowNull: false,
-      defaultValue: "D",
-    },
-    target_id: {
+    article_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-     contents: {
+    body: {
       type: DataTypes.STRING(512),
       allowNull: false
+    },
+    parent_comment_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     status: {
       type: DataTypes.STRING(32),
@@ -32,7 +31,8 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         Comment.belongsTo(models.User, {as: "user"});
-      }
+        Comment.hasMany(models.Comment);
+      }//
     }
   });
   return Comment;

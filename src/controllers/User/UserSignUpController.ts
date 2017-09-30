@@ -1,7 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import * as UserController from './UserController';
 import config from '../../config';
 import { db1 } from '../../database';
 
