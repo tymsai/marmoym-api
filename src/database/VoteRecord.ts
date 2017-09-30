@@ -1,28 +1,32 @@
 import * as Sequelize from 'sequelize';
 
+export interface VoteAttributes {
+
+}
+
+export interface VoteInstance extends Sequelize.Instance<VoteAttributes> {
+  createdAt?: Date;
+  updatedAt?: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  const Comment = sequelize.define('Comment', {
+  const VoteRecord = sequelize.define('VoteRecord', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    article_id: {
+    target_type: {
+      type: DataTypes.STRING(16)
+    },
+    target_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    body: {
-      type: DataTypes.STRING(512),
+    action: {
+      type: DataTypes.INTEGER,
       allowNull: false
-    },
-    parent_comment_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    status: {
-      type: DataTypes.STRING(32),
-      allowNull: false,
-      defaultValue: "NORMAL"
     }
   }, {
     timestamps: true,
@@ -30,10 +34,11 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function (models) {
-        Comment.belongsTo(models.User, {as: "user"});
-        Comment.hasMany(models.Comment);
+        VoteRecord.belongsTo(models.User, { 
+          as: "user"
+        });
       }
     }
   });
-  return Comment;
+  return VoteRecord;
 };

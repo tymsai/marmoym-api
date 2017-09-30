@@ -5,7 +5,7 @@ import * as winston from 'winston';
  * ...
  */
 export async function getDefinitionByTermId(termId: any) {
-  var list = await db1.definition.findAll({
+  var list = await db1.Definition.findAll({
     where: {
       status: { $not: "DELETED" },
       $or: [
@@ -25,10 +25,10 @@ export async function getDefinitionByTermId(termId: any) {
  * ...
  */
 export const registerDefinition = async function registerDefinition(params: any, termId: number) {
-  return await db1.definition.create({
-    term_id: termId,
-    contents: params.definitionContents,
-    user_id: "1" //고카톤용
+  return await db1.Definition.create({
+    termId: termId,
+    label: params.definitionContents,
+    userId: 1
   })
     .then(result => result.dataValues.id)
     .catch(err => {

@@ -11,7 +11,7 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    contents: {
+    label: {
       type: DataTypes.STRING(512),
       allowNull: false
     },
@@ -27,7 +27,6 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         Usage.belongsToMany(models.Definition, {
-          as: "definitions",
           through: "DefinitionUsage"
         });
       }
