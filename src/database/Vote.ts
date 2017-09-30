@@ -1,8 +1,12 @@
 import * as Sequelize from 'sequelize';
 
 export interface VoteAttributes {
-
-}
+  id?: number;
+  targetType?: string;
+  targetId?: number;
+  upvoteCount?: number;
+  downvoteCount?: number;
+ }
 
 export interface VoteInstance extends Sequelize.Instance<VoteAttributes> {
   createdAt?: Date;

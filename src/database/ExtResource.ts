@@ -4,9 +4,10 @@ export interface ExtResourceAttributes {
   id?: number;
   url?: string;
   status?: any;
+  definitionId?: number;
 }
 
-export interface ExtResourceInstance extends Sequelize.Instance<ExtResourceAttributes>{
+export interface ExtResourceInstance extends Sequelize.Instance<ExtResourceAttributes> {
   createdAt: Date;
   updatedAt: Date;
   dataValues?: any;

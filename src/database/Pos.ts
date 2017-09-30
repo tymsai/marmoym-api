@@ -1,5 +1,18 @@
 import * as Sequelize from 'sequelize';
 
+export interface PosAttributes {
+  id?: number;
+  label?: string;
+  labelEn?: string;
+  DefinitionId?: number;
+}
+
+export interface PosInstance extends Sequelize.Instance<PosAttributes> {
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const Pos = sequelize.define('Pos', {
     id: {
@@ -7,9 +20,13 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    label: {
       type: DataTypes.STRING(32),
-      allowNull: false
+      allowNull: true
+    },
+    labelEn: {
+      type: DataTypes.STRING(32),
+      allowNull: true
     }
   }, {
     timestamps: true,

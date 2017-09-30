@@ -1,10 +1,14 @@
 import * as Sequelize from 'sequelize';
 
-export interface VoteAttributes {
-
+export interface VoteRecordAttributes {
+  id?: number;
+  targetType?: string;
+  targetId?: number;
+  action?: number;
+  userId?: number;
 }
 
-export interface VoteInstance extends Sequelize.Instance<VoteAttributes> {
+export interface VoteRecordInstance extends Sequelize.Instance<VoteRecordAttributes> {
   createdAt?: Date;
   updatedAt?: Date;
   dataValues?: any;

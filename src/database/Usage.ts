@@ -1,5 +1,19 @@
 import * as Sequelize from 'sequelize';
 
+export interface UsageAttributes {
+  id?: number;
+  no?: number;
+  label?: string;
+  status?: any;
+  definitionId?: number;
+}
+
+export interface UsageInstance extends Sequelize.Instance<UsageAttributes> {
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const Usage = sequelize.define('Usage', {
     id: {

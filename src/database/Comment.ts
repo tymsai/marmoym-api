@@ -24,7 +24,7 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       autoIncrement: true
     },
     article_type: {
-      type: DataTypes.String(16),
+      type: DataTypes.STRING(16),
       allowNull: false
     },
     article_id: {
