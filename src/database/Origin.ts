@@ -1,7 +1,7 @@
 import * as Sequelize from 'sequelize';
 
 export interface OriginAttributes {
-  id?: string;
+  id?: number;
   label?: string;
   status?: any;
   termId?: number;
