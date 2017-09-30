@@ -1,11 +1,31 @@
 import * as Sequelize from 'sequelize';
 
+export interface CommentAttributes {
+  id?: number;
+  articleType?: string;
+  articleId?: number;
+  body?: string;
+  parentCommentId?: number;
+  status?: any;
+  userId?: number;
+}
+
+export interface CommentInstance extends Sequelize.Instance<CommentAttributes> {
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
   const Comment = sequelize.define('Comment', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
+    },
+    article_type: {
+      type: DataTypes.String(16),
+      allowNull: false
     },
     article_id: {
       type: DataTypes.INTEGER,
@@ -31,7 +51,6 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     classMethods: {
       associate: function (models) {
         Comment.belongsTo(models.User, {as: "user"});
-        Comment.hasMany(models.Comment);
       }//
     }
   });
