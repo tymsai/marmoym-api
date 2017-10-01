@@ -1,33 +1,28 @@
 import * as Sequelize from 'sequelize';
 
-export interface UsageAttributes {
+export interface ExtResourceAttributes {
   id?: number;
-  no?: number;
-  label?: string;
+  url?: string;
   status?: any;
   definitionId?: number;
 }
 
-export interface UsageInstance extends Sequelize.Instance<UsageAttributes> {
+export interface ExtResourceInstance extends Sequelize.Instance<ExtResourceAttributes> {
   createdAt: Date;
   updatedAt: Date;
   dataValues?: any;
 }
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  const Usage = sequelize.define('Usage', {
+  const ExtResource = sequelize.define('ExtResource', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    no: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    label: {
+    url: {
       type: DataTypes.STRING(512),
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: DataTypes.STRING(32),
@@ -40,11 +35,11 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function (models) {
-        Usage.belongsToMany(models.Definition, {
-          through: "DefinitionUsage"
-        });
+        ExtResource.belongsToMany(models.Definition, {
+          through: 'DefinitionExtResource'
+        })
       }
     }
   });
-  return Usage;
-}
+  return ExtResource;
+};

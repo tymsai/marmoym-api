@@ -15,7 +15,7 @@ export const signInUser = async (userInfo) => {
         username: userInfo.username
       }
     })
-    .catch(() => {  // TODO: 이 catch 문은 차후 에러 오브젝트를 디자인하고 수정해야함
+    .catch(() => { 
       throw new MarmoymError(ErrorType.USER_NOT_FOUND);
     })
     .then(res => {

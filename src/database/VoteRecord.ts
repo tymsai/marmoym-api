@@ -1,45 +1,48 @@
 import * as Sequelize from 'sequelize';
 
-export interface VoteAttributes {
+export interface VoteRecordAttributes {
   id?: number;
   targetType?: string;
   targetId?: number;
-  upvoteCount?: number;
-  downvoteCount?: number;
- }
+  action?: number;
+  userId?: number;
+}
 
-export interface VoteInstance extends Sequelize.Instance<VoteAttributes> {
+export interface VoteRecordInstance extends Sequelize.Instance<VoteRecordAttributes> {
   createdAt?: Date;
   updatedAt?: Date;
   dataValues?: any;
 }
 
 module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
-  const Vote = sequelize.define('Vote', {
+  const VoteRecord = sequelize.define('VoteRecord', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
     target_type: {
-      type: DataTypes.STRING(16),
+      type: DataTypes.STRING(16)
     },
     target_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    upvote_count: {
+    action: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
-    downvote_count: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
+      allowNull: false
     }
   }, {
     timestamps: true,
     underscored: true,
     freezeTableName: true,
+    classMethods: {
+      associate: function (models) {
+        VoteRecord.belongsTo(models.User, { 
+          as: "user"
+        });
+      }
+    }
   });
-  return Vote;
+  return VoteRecord;
 };

@@ -1,4 +1,6 @@
+// tsconfig.json to present here to let VSCode know how to work
 {
+  // "extends": "./internals/typescript/tsconfig.dev.json"
   "compilerOptions": {
     "allowJs": true,
     "target": "es6",
@@ -6,7 +8,7 @@
     "moduleResolution": "node",
     "outDir": "../../lib",
     "sourceMap": true,
-    "baseUrl": "../../",
+    "baseUrl": "./",
     "paths": {
       "@src/*": [
         "src/*"
@@ -14,7 +16,7 @@
     }
   },
   "include": [
-    "../../src/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"

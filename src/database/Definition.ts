@@ -1,13 +1,27 @@
 import * as Sequelize from 'sequelize';
 
-module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
+export interface DefinitionAttributes {
+  id?: number;
+  label?: string;
+  status?: any;
+  termId?: number;
+  userId?: number;
+}
+
+export interface DefinitionInstance extends Sequelize.Instance<DefinitionAttributes> {
+  createdAt: Date;
+  updatedAt: Date;
+  dataValues?: any;
+}
+
+export default function(sequelize: Sequelize.Sequelize, DataTypes) {
   const Definition = sequelize.define('Definition', {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
-    contents: {
+    label: {
       type: DataTypes.STRING(512),
       allowNull: false
     },
@@ -16,24 +30,21 @@ module.exports = function(sequelize: Sequelize.Sequelize, DataTypes) {
       allowNull: false,
       defaultValue: "NORMAL"
     },
-    upvote_count: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: "0"
-    },
-    downvote_count: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: "0"
-    }
   }, { 
     timestamps: true,
     underscored: true,
     freezeTableName: true,
     classMethods: {
       associate: function (models) {
-        Definition.belongsTo(models.Term, {as: "term"});
-        Definition.belongsTo(models.User, {as: "user"});
+        Definition.belongsTo(models.Term, {
+          as: 'Term'
+        });
+        Definition.belongsTo(models.User, {
+          as: 'User'
+        });
+        Definition.belongsTo(models.Vote, {
+          as: 'Vote'
+        });
       }
     }
   });

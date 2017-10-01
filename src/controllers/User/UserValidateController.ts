@@ -1,7 +1,6 @@
-import * as UserController from './UserController';
 
 export const validateUsername = async (req) => {
-  return await UserController.checkUsernameExist(req.params.username);
+  // return await UserController.checkUsernameExist(req.params.username);
   // if (result) {
   //   res.status(200).json({
   //     message: 'User Exist'
@@ -15,7 +14,7 @@ export const validateUsername = async (req) => {
 }
 
 export const validateEmail = async (req) => {
-  return await UserController.checkUserEmailExist(req.params.useremail);
+  // return await UserController.checkUserEmailExist(req.params.useremail);
   // if (result) {
   //   res.status(200).json({
   //     message: 'UserEmail Exist'
