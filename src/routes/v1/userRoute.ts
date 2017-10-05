@@ -50,7 +50,7 @@ function userRoute(router) {
     .post((request: Request, response: Response) => {
       const req: UserRequest.SignIn = request.body;
       const payload = UserSignInController.signInUser(req);
-      console.log(1, 'hi')
+      
       respond(response, payload);
     })
 
