@@ -19,7 +19,7 @@ const _verifyUserToken = async (token: string, userId: number) => {
   if (decoded.id == userId) {
     return decoded;
   } else {
-    throw new MarmoymError(ErrorType.Auth.TOKEN_AND_USER_ID_NOT_EQUAL);
+    throw new MarmoymError(ErrorType.Auth.TOKEN_AND_USER_ID_INCOMPATIBLE);
   }
 };
 
@@ -29,7 +29,7 @@ const _verifyUserToken = async (token: string, userId: number) => {
 export const tokenAuthHandler = (req, res, next) => {
   const token = req.headers['x-access-token'];
   const userId = req.body.userId;
-  
+
   _verifyUserToken(token, userId)
     .then(result => {
       req['_token'] = result;
