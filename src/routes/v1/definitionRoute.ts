@@ -14,6 +14,7 @@ import * as DefinitionAddController from '../../controllers/Definition/Definitio
 
 function definitionRoute(router) {
   router.route(URL.DEFINITION_ROUTE)
+    //TODO
     // .get((req: Request, res: Response) => {
     //   db.transaction((trx) => {
     //     Promise.all([
@@ -33,6 +34,7 @@ function definitionRoute(router) {
       respond(response, payload);
     })
   
+  //TODO
   // router.route(URL.DEFINIITON_TERMID_ROUTE)
   //   .get((req: Request, res: Response) => {
   //     const payload = req.params;

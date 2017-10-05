@@ -1,9 +1,15 @@
 import db from '../../database';
 
-export const selectUserByEmailOrUsername = (email: string, username: string) => {
+export const selectUserByEmail = (email: string) => {
   return db('User').where({
     email: email
-  }).orWhere({
+  })
+  .select()
+};
+
+export const selectUserByUsername = (username: string) => {
+  return db('User').where({
     username: username
-  }).select()
+  })
+  .select()
 };

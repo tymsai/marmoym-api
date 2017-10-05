@@ -9,7 +9,7 @@ import { respond } from '../../services/responseService';
 // import { DefinitionStatus } from '../../models/common/DefinitionStatus';
 import * as URL from '../URL';
 import { UserRequest } from '../RequestTypes';
-import * as UserAddController from "../../controllers/User/UserAddController";
+import * as UserSignUpController from "../../controllers/User/UserSignUpController";
 
 function userRoute(router) {
   
@@ -25,7 +25,7 @@ function userRoute(router) {
      */
     .post((request: Request, response: Response) => {
       const req: UserRequest.SignUp = request.body;
-      const payload = UserAddController.addUser(req);
+      const payload = UserSignUpController.addUser(req);
       
       respond(response, payload);
     })

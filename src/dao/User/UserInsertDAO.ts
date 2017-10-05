@@ -1,4 +1,5 @@
 import db from '../../database';
+import { UserStatus } from "../../models/UserStatus";
 
 export const insertUser = (trx, data: any, encodedPw: string) => {
   return db.transacting(trx)
@@ -7,6 +8,6 @@ export const insertUser = (trx, data: any, encodedPw: string) => {
       username: data.username,
       password: encodedPw,
       email: data.email,
-      status: 'N'//TODO
+      status: UserStatus.PENDING
     })
 };
