@@ -17,7 +17,7 @@ export const signInUser = async (req) => {
     const userInfo = userSelected[0];
     
     if (userInfo.status == 'P') {
-      throw new MarmoymError(ErrorType.User.PENDING_USER);
+      throw new MarmoymError(ErrorType.User.USER_STATUS_PENDING);
     }
 
     if (bcrypt.compareSync(req.password, userInfo.password)) {
