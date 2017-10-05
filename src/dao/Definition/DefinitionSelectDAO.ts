@@ -7,6 +7,7 @@ export const getDefinitions = () => {
 
 export const getDefinitionsByTermId = (termId: number) => {
   return db('Definition').where({
-    term_id: termId
-  }).select()
+      term_id: termId
+    })
+    .select()
 };
