@@ -20,7 +20,7 @@ export const insertDefinitionPos = (trx, defId: number, posIds: Array<number>) =
   });
   return db.transacting(trx)
     .into('DefinitionPos')
-    .insert(input)
+    .insert(input);
 }
 
 export const insertDefinitionUsage = (trx, defId: number, usageId: number) => {
@@ -30,5 +30,5 @@ export const insertDefinitionUsage = (trx, defId: number, usageId: number) => {
       def_id: defId,
       usage_id: usageId,
       status: 'N'
-    })
+    });
 }
