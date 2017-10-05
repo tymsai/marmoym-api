@@ -4,12 +4,12 @@ export const selectUserByEmail = (email: string) => {
   return db('User').where({
     email: email
   })
-  .select()
+  .select();
 };
 
 export const selectUserByUsername = (username: string) => {
   return db('User').where({
     username: username
   })
-  .select()
+  .select();
 };
