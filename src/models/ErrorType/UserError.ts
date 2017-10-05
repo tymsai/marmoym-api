@@ -28,5 +28,10 @@ export default {
     type: 'EMAIL_EXIST',
     code: 401005,
     msg: 'email exit'
+  },
+  'PENDING_USER': {
+    type: 'PENDING_USER',
+    code: 401006,
+    msg: 'Status is Pending'
   }
 }
