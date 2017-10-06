@@ -19,7 +19,7 @@ import * as UserCheckUsedController from "../../controllers/User/UserCheckUsedCo
 
 function userRoute(router) {
   
-  router.route(URL.USER_ROUTE)
+  router.route(URL.USER)
     /**
      * 회원가입
      */
@@ -48,7 +48,7 @@ function userRoute(router) {
       respond(response, payload);
     })
   
-  router.route(URL.USER_SIGNIN_ROUTE)
+  router.route(URL.USER_SIGNIN)
     /**
      * 로그인
      */
@@ -59,7 +59,7 @@ function userRoute(router) {
       respond(response, payload);
     })
 
-  router.route(URL.USER_USERID_ROUTE)
+  router.route(URL.USER_USERID)
     /**
     * 회원정보가져오기
     */
