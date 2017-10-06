@@ -72,4 +72,8 @@ export namespace UserRequest {
   export interface Delete {
     userId: number;
   }
+  export interface CheckUsed {
+    username?: string,
+    email?: string
+  }
 } 

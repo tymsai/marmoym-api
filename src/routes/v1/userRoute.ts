@@ -15,6 +15,8 @@ import * as UserSignInController from "../../controllers/User/UserSignInControll
 import * as UserUpdateController from "../../controllers/User/UserUpdateController";
 import * as UserDeleteController from "../../controllers/User/UserDeleteController";
 import * as UserGetController from "../../controllers/User/UserGetController";
+import * as UserCheckUsedController from "../../controllers/User/UserCheckUsedController";
+
 function userRoute(router) {
   
   router.route(URL.USER_ROUTE)
@@ -67,7 +69,28 @@ function userRoute(router) {
 
       respond(response, payload);
     })
- 
+
+  router.route(URL.USER_CHECK_USERNAME_USED)
+    /**
+    * Username 사용여부 확인
+    */
+    .get((request: Request, response: Response) => {
+      const req: UserRequest.CheckUsed = request.params;
+      const payload = UserCheckUsedController.checkUsernameUsed(req);
+
+      respond(response, payload);
+    })
+
+  router.route(URL.USER_CHECK_EMAIL_USED)
+    /**
+    * Email 사용여부 확인
+    */
+    .get((request: Request, response: Response) => {
+      const req: UserRequest.CheckUsed = request.params;
+      const payload = UserCheckUsedController.checkEmailUsed(req);
+
+      respond(response, payload);
+    })
 } 
 
 export default userRoute;
