@@ -10,7 +10,7 @@ import MarmoymError from "../../models/MarmoymError";
 import ErrorType from '../../models/ErrorType';
 
 export const checkUsernameUsed = async (req) => {
-  const userSelected = await UserSelectDAO.selectUserByUsername(req.username)
+  const userSelected = await UserSelectDAO.selectUserByUsername(req.username);
 
   if (userSelected.length == 0) {
     //TODO return value 는 정해져야함
@@ -21,7 +21,7 @@ export const checkUsernameUsed = async (req) => {
 }
 
 export const checkEmailUsed = async (req) => {
-  const userSelected = await UserSelectDAO.selectUserByEmail(req.email)
+  const userSelected = await UserSelectDAO.selectUserByEmail(req.email);
 
   if (userSelected.length == 0) {
     //TODO return value 는 정해져야함
