@@ -9,8 +9,10 @@ import { respond } from '../../services/responseService';
 // import { DefinitionStatus } from '../../models/common/DefinitionStatus';
 import * as URL from '../URL';
 import { UserRequest } from '../RequestTypes';
+import { tokenAuthHandler } from '../../services/authService';
 import * as UserSignUpController from "../../controllers/User/UserSignUpController";
 import * as UserSignInController from "../../controllers/User/UserSignInController";
+import * as UserUpdateController from "../../controllers/User/UserUpdateController";
 
 function userRoute(router) {
   
@@ -33,8 +35,11 @@ function userRoute(router) {
     /**
      * 회원정보수정
      */
-    .put((request: Request, response: Response) => {
-      //TODO
+    .put(tokenAuthHandler, (request: Request, response: Response) => {
+      const req: UserRequest.Update = request.body;
+      const payload = UserUpdateController.updateUser(req);
+
+      respond(response, payload);
     })
     /**
      * 회원정보삭제

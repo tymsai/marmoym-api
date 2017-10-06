@@ -61,4 +61,9 @@ export namespace UserRequest {
     email: string;
     password: string;
   }
+  export interface Update {
+    userId: number;
+    username: string;
+    password: string;
+  }
 } 
