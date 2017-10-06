@@ -14,10 +14,10 @@ export default {
     code: 401002,
     msg: 'user update values are empty'
   },
-  'USERNAME_NOT_EQUAL': {
-    type: 'USERNAME_NOT_EQUAL',
+  'USER_DELETE_FAIL': {
+    type: 'USER_DELETE_FAIL',
     code: 401003,
-    msg: 'Not equal username'
+    msg: 'no user deleted'
   },
   'USERNAME_ALREADY_USED': {
     type: 'USERNAME_ALREADY_USED',
