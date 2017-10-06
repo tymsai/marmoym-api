@@ -52,6 +52,9 @@ export namespace DefinitionRequest {
 }
 
 export namespace UserRequest {
+  export interface Get {
+    userId: number;
+  }
   export interface SignUp {
     username: string;
     password: string;

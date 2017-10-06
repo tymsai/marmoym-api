@@ -14,16 +14,10 @@ import * as UserSignUpController from "../../controllers/User/UserSignUpControll
 import * as UserSignInController from "../../controllers/User/UserSignInController";
 import * as UserUpdateController from "../../controllers/User/UserUpdateController";
 import * as UserDeleteController from "../../controllers/User/UserDeleteController";
-
+import * as UserGetController from "../../controllers/User/UserGetController";
 function userRoute(router) {
   
   router.route(URL.USER_ROUTE)
-    /**
-     * 회원정보가져오기
-     */
-    .get((request: Request, response: Response) => {
-      //TODO
-    })
     /**
      * 회원가입
      */
@@ -63,6 +57,17 @@ function userRoute(router) {
       respond(response, payload);
     })
 
+  router.route(URL.USER_USERID_ROUTE)
+    /**
+    * 회원정보가져오기
+    */
+    .get(tokenAuthHandler, (request: Request, response: Response) => {
+      const req: UserRequest.Get = request.params;
+      const payload = UserGetController.getUserInfo(req);
+
+      respond(response, payload);
+    })
+ 
 } 
 
 export default userRoute;
