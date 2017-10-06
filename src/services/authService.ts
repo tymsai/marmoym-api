@@ -34,5 +34,8 @@ export const tokenAuthHandler = (req, res, next) => {
     .then(result => {
       req['_token'] = result;
       next();
+    })
+    .catch(err => {
+      next(err);
     });
 };
