@@ -66,4 +66,7 @@ export namespace UserRequest {
     username: string;
     password: string;
   }
+  export interface Delete {
+    userId: number;
+  }
 } 

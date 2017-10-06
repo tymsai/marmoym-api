@@ -13,6 +13,7 @@ import { tokenAuthHandler } from '../../services/authService';
 import * as UserSignUpController from "../../controllers/User/UserSignUpController";
 import * as UserSignInController from "../../controllers/User/UserSignInController";
 import * as UserUpdateController from "../../controllers/User/UserUpdateController";
+import * as UserDeleteController from "../../controllers/User/UserDeleteController";
 
 function userRoute(router) {
   
@@ -44,8 +45,11 @@ function userRoute(router) {
     /**
      * 회원정보삭제
      */
-    .delete((request: Request, response: Response) => {
-      //TODO
+    .delete(tokenAuthHandler, (request: Request, response: Response) => {
+      const req: UserRequest.Delete = request.body;
+      const payload = UserDeleteController.deleteUser(req);
+
+      respond(response, payload);
     })
   
   router.route(URL.USER_SIGNIN_ROUTE)
