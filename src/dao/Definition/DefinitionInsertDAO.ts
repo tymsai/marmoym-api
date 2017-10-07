@@ -1,6 +1,6 @@
 import db from '../../database';
 
-export const insertDefinition = (trx, data: any, termId: number) => {
+export function insertDefinition(trx, data: any, termId: number) {
   return db.transacting(trx)
     .into('Definition')
     .insert({
@@ -13,17 +13,18 @@ export const insertDefinition = (trx, data: any, termId: number) => {
 };
 
 
-export const insertDefinitionPos = (trx, defId: number, posIds: Array<number>) => {
+export function insertDefinitionPos(trx, defId: number, posIds: Array<number>) {
   let input = [];
   posIds.forEach(val => {
     input.push({def_id: defId, pos_id: val});
   });
+  
   return db.transacting(trx)
     .into('DefinitionPos')
     .insert(input);
 }
 
-export const insertDefinitionUsage = (trx, defId: number, usageId: number) => {
+export function insertDefinitionUsage(trx, defId: number, usageId: number) {
   return db.transacting(trx)
     .into('DefinitionUsage')
     .insert({

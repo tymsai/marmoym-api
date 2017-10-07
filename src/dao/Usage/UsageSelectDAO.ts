@@ -1,6 +1,6 @@
 import db from '../../database';
 
-export function getUsageByDefinitionId (defId: number) {
+export function selectUsageByDefinitionId(defId: number) {
   return db('DefinitionUsage').where('DefinitionUsage.def_id',defId)
     .leftJoin('Usage', function() {
       this.on('Usage.id', '=','DefinitionUsage.usage_id');

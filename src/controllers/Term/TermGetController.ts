@@ -6,8 +6,8 @@ import * as UsageSelectDAO from '../../dao/Usage/UsageSelectDAO';
 import * as OriginSelectDAO from '../../dao/Origin/OriginSelectDAO';
 import { transaction } from '../../database/databaseUtils';
 
-export async function getTerms(req) {
-  const termSelected = await TermSelectDAO.getRecentUpdatedTerm(req.offset);
+export async function getRecentlyUpdatedTerm(req) {
+  const termSelected = await TermSelectDAO.getRecentlyUpdatedTerm(req.offset);
   
   let temp = await Promise.all(termSelected.map(async obj => {
     obj['defs'] = [];

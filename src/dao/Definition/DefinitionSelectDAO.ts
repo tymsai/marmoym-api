@@ -1,13 +1,13 @@
 import db from '../../database';
 
-export function getDefinitionsByTermId (termId: number) {
+export function selectDefinitionsByTermId(termId: number) {
   return db('Definition').where({
       term_id: termId
     })
     .select();
 };
 
-export function getRecentCreatedDefinitionsByTermId (termId: number, offset: number, limit: number) {
+export function selectRecentlyCreatedDefinitionsByTermId(termId: number, offset: number, limit: number) {
   return db('Definition').where({
       term_id: termId
     })

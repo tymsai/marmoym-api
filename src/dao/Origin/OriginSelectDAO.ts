@@ -1,6 +1,6 @@
 import db from '../../database';
 
-export function getOriginByDefinitionId (defId: number) {
+export function selectOriginByDefinitionId (defId: number) {
   return db('Origin').where({
     def_id: defId,
     status: 'N'
