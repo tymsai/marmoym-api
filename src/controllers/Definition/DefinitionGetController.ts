@@ -16,7 +16,8 @@ export async function getDefinitionByTermId(req) {
   } else {
     termSelected[0]['defs'] = [];
     //TODO 현재는 최신순으로 등록된 defs를 가져오지만 추후 vote순으로 가져오기
-    const defs = await DefinitionSelectDAO.selectRecentlyCreatedDefinitionsByTermId(req.termId, req.offset, 5);
+    const defs = 
+      await DefinitionSelectDAO.selectRecentlyCreatedDefinitionsByTermId(req.termId, req.offset, 5);
 
     await Promise.all(defs.map(async defObj => {
       //get Pos 

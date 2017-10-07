@@ -27,8 +27,8 @@ export function selectRecentlyUpdatedTerm(offset: number) {
 
 export function selectTermByTermId(termId: number) {
   return db('Term').select('Term.id  as termId', 'Term.label as term', 'Term.roman as termRoman')
-  .where({
-    id: termId,
-    status: TermStatus.NORMAL
-  });
+    .where({
+      id: termId,
+      status: TermStatus.NORMAL
+    });
 }
