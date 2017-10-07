@@ -17,7 +17,6 @@ function termRoute(router) {
      */
     .get((request: Request, response: Response) => {
       const req: TermRequest.Get = request.query;
-      console.log(1, req);
       const payload = TermGetController.getTerms(req);
       
       respond(response, payload);
