@@ -1,5 +1,5 @@
 import db from '../../database';
-import { UserStatus } from "../../models/UserStatus";
+import { UserStatus } from "../../models/Status/UserStatus";
 
 export function deleteUserByUserId(trx, userId: number) {
   return db.transacting(trx)

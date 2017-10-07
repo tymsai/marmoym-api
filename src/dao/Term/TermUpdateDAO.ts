@@ -1,5 +1,5 @@
 import db from '../../database';
-import { TermStatus } from "../../models/TermStatus";
+import { TermStatus } from "../../models/Status/TermStatus";
 
 export function updateTermOnlyUpdatedAt(trx, termId: number) {
   return db.transacting(trx)

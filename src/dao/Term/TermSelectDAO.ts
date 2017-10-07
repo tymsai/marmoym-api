@@ -1,5 +1,5 @@
 import db from '../../database';
-import { TermStatus } from '../../models/TermStatus';
+import { TermStatus } from '../../models/Status/TermStatus';
 
 export function selectTermByLabel(label: string) {
   return db('Term').select()
