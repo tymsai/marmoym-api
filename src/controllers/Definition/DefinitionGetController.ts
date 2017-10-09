@@ -22,7 +22,6 @@ export async function getDefinitionByDefIds(req) {
   //get definitions
   const defSelected = await DefinitionSelectDAO.selectDefinitionsByIds(req.defIds)
   await Promise.all(defSelected.map(async defObj => {
-
     if (termIds.indexOf(defObj.term_id) == -1) {
       termIds.push(defObj.term_id);
     }
