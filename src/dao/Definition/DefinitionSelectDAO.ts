@@ -24,7 +24,7 @@ export function selectIdsOfRecentlyAdded(offset: number, limit:number) {
 export function selectIdsByTermExact(label: string, offset: number, limit: number) {
   return db('Definition')
     .leftJoin('Term', function() {
-      this.on('Term.id', '=','Definition.term_id')
+      this.on('Term.id', '=', 'Definition.term_id')
     })
     .where('Definition.status',DefinitionStatus.NORMAL)
     .where('Term.status', TermStatus.NORMAL)

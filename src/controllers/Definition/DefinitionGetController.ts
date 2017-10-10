@@ -79,11 +79,10 @@ export async function getRecentlyUpdatedDefinitionIds(req) {
 };
 
 export async function getDefinitionIdsBySearch(req) {
-  const definitionIds = await DefinitionSelectDAO.selectIdsByTerm(req.q,0,10);
+  const definitionIds = await DefinitionSelectDAO.selectIdsByTerm(req.query,0,10);
   await Promise.all(definitionIds.map(defObj => {
    defObj.updatedAt = defObj.updatedAt.getTime();
   }))
 
   return definitionIds;
-  
 };

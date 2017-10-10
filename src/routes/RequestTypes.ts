@@ -68,7 +68,7 @@ export namespace DefinitionRequest {
   }
 
   export interface Search {
-    q: string;
+    query: string;
   }
 }
 
