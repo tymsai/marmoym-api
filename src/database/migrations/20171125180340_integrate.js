@@ -1,4 +1,5 @@
 const Comment = require('@models/Comment').default;
+const CommentPath = require('@models/CommentPath').default;
 
 exports.up = function(knex, Promise) {
   return Promise.all([
@@ -102,11 +103,11 @@ exports.up = function(knex, Promise) {
       table.timestamps(true, true);
     }),
 
-    knex.schema.createTable('CommentPath', function(table) {
-      table.increments('id').primary();
-      table.integer('gparent_id').defaultTo('0');
-      table.text('path');
-      table.string('status', 1).defaultTo('N');
+    knex.schema.createTable(CommentPath._NAME, function(table) {
+      table.increments(CommentPath.ID).primary();
+      table.integer(CommentPath.GPARENT_ID).defaultTo('0');
+      table.text(CommentPath.PATH);
+      table.string(CommentPath.STATUS, 1).defaultTo('N');
       table.timestamps(true, true);
     }),
   ])
