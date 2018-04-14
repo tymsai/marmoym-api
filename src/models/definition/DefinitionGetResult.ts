@@ -1,4 +1,4 @@
-class GetDefinitionsResult {
+class DefinitionGetResult {
   public terms: any[];
   public definitions: any[];
   public users: any[];
@@ -10,4 +10,4 @@ class GetDefinitionsResult {
   }
 }
 
-export default GetDefinitionsResult;
+export default DefinitionGetResult;
