@@ -17,9 +17,14 @@ export default class DefinitionGetController {
 };
 
 export async function getDefinitions(param: DefinitionGetParam): Promise<any> {
-  const list = await DefinitionSelectDAO.selectDefinitions(1,10);
-  console.log(111111,list);
-  return list;
+  try {
+    const data = await DefinitionSelectDAO.selectDefinitions(1, 10);
+    
+    const result = DefinitionGetResult.ofMany(data);
+    return result;
+  } catch (err) {
+    // todos
+  }
 }
 // export async function getDefinitionByDefIds(param: GetDefinitionsParam)
 //   : Promise<GetDefinitionsResult> {

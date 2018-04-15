@@ -26,7 +26,8 @@ export function selectDefinitions(page: number, limit: number) {
     left join ${Pos._NAME} as pos on defpos.${DefinitionPos.POS_ID} = pos.${Pos.ID}
     left join ${DefinitionUsage._NAME} as defusage on def.${Definition.ID} = defusage.${DefinitionUsage.DEF_ID}
     left join ${Usage._NAME} as usage on defusage.${DefinitionUsage.USAGE_ID} = usage.${Usage.ID}
-  `);
+  `)
+  .then((res) => res.rows);
 }
 // select * from ${Definition._NAME} inner join ${Term._NAME} on ${Definition.TERM_ID} = ${Term.ID}
 

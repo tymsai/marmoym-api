@@ -11,7 +11,7 @@ import logConfig from '@config/serverConfig';
 import * as errorHandleService from './middlewares/errorHandler';
 import routes from './routes';
 import db from '@src/database';
-import logger from '@src/modules/logger';
+import Logger from '@src/modules/Logger';
 
 const app: express.Application = express();
 const port: number = process.env.PORT || serverConfig['marmoym-dev1'].port;
@@ -39,7 +39,7 @@ app.use("/", (req, res, next) => {
 app.use(errorHandleService.handleError);
 
 // app.listen(serverConfig['marmoym-dev1'].port, () => {
-//   logger.debug(`[BEGIN] Express listening on ${serverConfig['marmoym-dev1'].port}`);
+//   Logger.debug(`[BEGIN] Express listening on ${serverConfig['marmoym-dev1'].port}`);
 // });
 
 export default app;
